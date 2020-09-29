@@ -1,0 +1,2 @@
+#!/bin/sh
+ab -r -n 10000 -c 25 localhost:10022/${1}

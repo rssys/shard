@@ -1,0 +1,77 @@
+MSET:
+
+[ 1625.504682] num_handled 2080000
+[ 1625.504687] num_switch_ctx_insts 9105
+[ 1625.504692] num_sc_entry 2070151, num_sc_exit 0, num_ss_exits 504, num_ss_logging_exits 0, num_check_ci_exits 0, num_logging_exits 0
+[ 1625.504695] irq_exits 0, num_recovered 240
+[ 1625.504698] usa_time 0, num_sc_changes_in_scope 89343, num_ctx_changes_in_scope 9100
+[ 1625.504701] handling_time is 0
+[ 1625.504703] switch_ctx_time is 0
+[ 1625.504705] sc_time is 0
+[ 1625.504707] early_time 0
+[ 1625.504709] init_time 0
+[ 1625.504711] total_time 0
+[ 1625.504713] num_guest_exits 6593157
+
+SPOP:
+
+[ 1625.504682] num_handled 2080000
+[ 1625.504687] num_switch_ctx_insts 9105
+[ 1625.504692] num_sc_entry 2070151, num_sc_exit 0, num_ss_exits 504, num_ss_logging_exits 0, num_check_ci_exits 0, num_logging_exits 0
+[ 1625.504695] irq_exits 0, num_recovered 240
+[ 1625.504698] usa_time 0, num_sc_changes_in_scope 89343, num_ctx_changes_in_scope 9100
+[ 1625.504701] handling_time is 0
+[ 1625.504703] switch_ctx_time is 0
+[ 1625.504705] sc_time is 0
+[ 1625.504707] early_time 0
+[ 1625.504709] init_time 0
+[ 1625.504711] total_time 0
+[ 1625.504713] num_guest_exits 6593157
+
+
+SADD:
+
+[ 1920.208794] num_handled 2060000
+[ 1920.208797] num_switch_ctx_insts 3918
+[ 1920.208800] num_sc_entry 2055419, num_sc_exit 0, num_ss_exits 442, num_ss_logging_exits 0, num_check_ci_exits 0, num_logging_exits 0
+[ 1920.208802] irq_exits 0, num_recovered 221
+[ 1920.208804] usa_time 0, num_sc_changes_in_scope 73634, num_ctx_changes_in_scope 3913
+[ 1920.208805] handling_time is 0
+[ 1920.208807] switch_ctx_time is 0
+[ 1920.208808] sc_time is 0
+[ 1920.208809] early_time 0
+[ 1920.208810] init_time 0
+[ 1920.208812] total_time 0
+[ 1920.208813] num_guest_exits 6487958
+
+
+
+INCR
+
+[ 2264.524015] num_handled 2070000
+[ 2264.524018] num_switch_ctx_insts 8656
+[ 2264.524021] num_sc_entry 2055981, num_sc_exit 0, num_ss_exits 3622, num_ss_logging_exits 0, num_check_ci_exits 0, num_logging_exits 0
+[ 2264.524023] irq_exits 0, num_recovered 1741
+[ 2264.524025] usa_time 0, num_sc_changes_in_scope 74106, num_ctx_changes_in_scope 8653
+[ 2264.524027] handling_time is 0
+[ 2264.524028] switch_ctx_time is 0
+[ 2264.524029] sc_time is 0
+[ 2264.524030] early_time 0
+[ 2264.524031] init_time 0
+[ 2264.524033] total_time 0
+[ 2264.524034] num_guest_exits 6523541
+
+SET:
+
+[ 2529.320167] num_handled 2060000
+[ 2529.320168] num_switch_ctx_insts 4770
+[ 2529.320170] num_sc_entry 2055131, num_sc_exit 0, num_ss_exits 66, num_ss_logging_exits 0, num_check_ci_exits 0, num_logging_exits 0
+[ 2529.320170] irq_exits 0, num_recovered 33
+[ 2529.320171] usa_time 0, num_sc_changes_in_scope 75503, num_ctx_changes_in_scope 4767
+[ 2529.320171] handling_time is 0
+[ 2529.320172] switch_ctx_time is 0
+[ 2529.320172] sc_time is 0
+[ 2529.320172] early_time 0
+[ 2529.320172] init_time 0
+[ 2529.320173] total_time 0
+[ 2529.320173] num_guest_exits 6457304

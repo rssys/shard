@@ -1,0 +1,11 @@
+Make sure you have followed all instructions in guest-kernel
+
+Make sure you have set the Global variables SHARD_PATH, SHARD_WORK_DIR
+
+run the script set_shard_work_dir_path
+
+build the host kernel by following instructions in host_os
+
+boot into the host kernel
+
+build and run qemu by following instructions in qemu

@@ -1,0 +1,4 @@
+[ 7102.992149] num_handled 640000
+[ 7102.992150] num_switch_ctx_insts 129740
+[ 7102.992151] num_sc_entry 509543, num_sc_exit 0, num_logging_exits 0
+[ 7102.992151] num_recovered 61

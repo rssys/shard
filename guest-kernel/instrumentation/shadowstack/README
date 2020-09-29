@@ -1,0 +1,23 @@
+We allocate a shadow stack pool that has a size of 10 MB. The shadow stack for each process is allocated from this pool.
+
+At run-time, for each tracked process we maintain the following structure
+
+struct proc_ss_info {
+	int pid;
+	int idx;
+	long * shadow_stack_addr;
+};
+
+Here pid is the process id of that process on the guest idx is the shadow_stack_index and shadow_stack_addr is the base of the shadow_stack allocated to this process.
+
+Before context switch to a process we call the 
+
+a) "save_old_ss" function. It saves currents shadow_stack_index and shadow_stack variables to the proc_ss_info structure corresponding to pid of previous process.
+
+b) "add_new_ss" function with name and pid of the next process to run. This function will check if a proc_ss_info object exists for this pid or not:
+			- If it does not exist, a new proc_ss_info object will be created with idx set to zero. shadow_stack_addr is allocated from the shadow_stack_pool. Each process is allowed 200 * 8 bytes for its shadow stack
+			- It it does exist, the last values of idx and shadow_stack_addr are loaded to the global variables shadow_stack_index and shadow_stack
+
+ss_entry - shadow stack prologue, uses shadow_stack_index and shadow_stack variables to store return address of current function to shadow_stack
+
+ss_exit - shadow stack epilogue, uses shadow_stack_index and shadow_stack variables to pop the shadow stack and compare the value on the stack with current value of return address

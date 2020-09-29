@@ -1,0 +1,13 @@
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t PING && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t MSET && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t LRANGE && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t SPOP && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t HSET && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t SADD && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t RPOP && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t LPOP && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t RPUSH && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t LPUSH && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t INCR && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t GET && sleep 5; done
+# for i in {1..10}; do redis-benchmark -h localhost -p 10022 -t SET && sleep 5; done

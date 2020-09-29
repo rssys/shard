@@ -1,0 +1,19 @@
+build bzImage and other dependencies required for SHARD at run-time.
+
+These include
+
+	dt_func_code_original_backup - Original guest kernel text section
+	dt_func_code_is_backup - Protected guest kernel text section
+	dt_func_code_overwritten_backup - Original guest kernel text section
+
+	dt_cfg - Static call graph
+	sc_info - System call level frame information. For each system call, it contains what part of each frame is required by that system call. This information is generated using the profile that is passed as input. Currently, we only support one profile at one time.
+
+	guest_addrs.h - These are guest kernel addresses needed by SHARD at run-time
+
+./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/protected-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 
+
+Arguments - What vmlinux file to use (e.g. protected-kernel, profiling-kernel etc)
+			What profile to use
+
+

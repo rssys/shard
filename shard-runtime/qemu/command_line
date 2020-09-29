@@ -1,0 +1,3 @@
+to build qemu - build_qemu.sh
+
+to run cd build/x86-64_softmmu - run_qemu

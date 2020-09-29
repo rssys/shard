@@ -1,0 +1,16 @@
+Make sure the guest kernel is running using the appropriate redis command in ${SHARD_PATH}/shard_monitor/qemu/run_qemu
+
+Everything below has to be done on the guest :
+
+	install the appropriate redis version on the guest machine
+	Disable redis from running at start-up
+		sudo service disable redis-server
+	redis-server --daemonize yes
+	now copy server/redis_cli.sh to server and run
+	./redis_cli.sh
+
+
+Now nginx is running on guest. Everything below has to be done on host:
+	run each of the tests  in run_redis_tests.sh one by one. Running them together causes kernel to hang.
+
+	For each run, the time taken to complete will be reported. 

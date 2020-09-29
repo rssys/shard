@@ -1,0 +1,5 @@
+Run build_custom_llvm.sh
+
+lib/Transforms/Utils/InlineFunction.cpp 
+and 
+lib/Transforms/Scalar/TailRecursionElimination.cpp are the only files changed

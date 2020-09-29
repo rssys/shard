@@ -1,0 +1,1 @@
+cp ${SHARD_PATH}/guest-kernel/kernel-bitcode/bitcode-build-full-link/kernel-linked-bcs.o.bc . && ./create_call_graphs.sh

@@ -1,0 +1,4 @@
+/vulnerable
+/ss_funcs
+/lib/*.o
+/lib/*.so

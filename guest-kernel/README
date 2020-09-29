@@ -1,0 +1,19 @@
+## Instrumentation for SHARD-protected kernels
+
+This directory contains all the code needed for instrumented SHARD kernels (Linux)
+which are used for analysis and run-time.
+
+Prerequisites - gclang (/kernelguard/pre-req.sh)
+                LLVM-5 (/kernelguard/llvm-5.0)
+
+1) Follow the instructions in `kernel-bitcode` to clone the github repo, and
+   generate the vmlinux and LLVM bitcode
+
+2) Follow the instructions in callgraph to create the static callgraph
+
+3) Add the instrumentation that you want to make
+	Follow the instructions in profiling-kernel to generate a kernel for profiling
+	Follow the instruction in protected-kernel to generate a kernel for run-time
+
+4) Follow the instructions in build_shard_runtime_deps to build all the dependencies needed by SHARD
+	Copy all these dependencies into arch/x86/kvm/. of your host kernel.

@@ -1,0 +1,168 @@
+[  918.257681] num_handled 4120000
+[  918.257686] num_switch_ctx_insts 13435
+[  918.257690] num_sc_entry 4106565, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[  918.257692] irq_exits 0, num_recovered 0
+[  918.257696] usa_time 0, num_sc_changes_in_scope 143076, num_ctx_changes_in_scope 13432
+[  918.257698] handling_time is 0
+[  918.257700] switch_ctx_time is 0
+[  918.257702] sc_time is 0
+[  918.257704] early_time 0
+[  918.257706] init_time 0
+[  918.257708] total_time 0
+[  918.257710] num_guest_exits 0
+
+[ 1049.683077] num_handled 6180000
+[ 1049.683079] num_switch_ctx_insts 28121
+[ 1049.683079] num_sc_entry 6151879, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1049.683080] irq_exits 0, num_recovered 0
+[ 1049.683080] usa_time 0, num_sc_changes_in_scope 215238, num_ctx_changes_in_scope 28118
+[ 1049.683081] handling_time is 0
+[ 1049.683081] switch_ctx_time is 0
+[ 1049.683081] sc_time is 0
+[ 1049.683082] early_time 0
+[ 1049.683082] init_time 0
+[ 1049.683082] total_time 0
+[ 1049.683083] num_guest_exits 0
+				
+[ 1114.076577] num_handled 9500000
+[ 1114.076578] num_switch_ctx_insts 29765
+[ 1114.076579] num_sc_entry 9470235, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1114.076579] irq_exits 0, num_recovered 0
+[ 1114.076580] usa_time 0, num_sc_changes_in_scope 365575, num_ctx_changes_in_scope 29760
+[ 1114.076580] handling_time is 0
+[ 1114.076581] switch_ctx_time is 0
+[ 1114.076581] sc_time is 0
+[ 1114.076581] early_time 0
+[ 1114.076582] init_time 0
+[ 1114.076582] total_time 0
+[ 1114.076582] num_guest_exits 0
+
+[ 1377.360647] num_handled 2060000
+[ 1377.360648] num_switch_ctx_insts 5567
+[ 1377.360649] num_sc_entry 2054433, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1377.360649] irq_exits 0, num_recovered 0
+[ 1377.360650] usa_time 0, num_sc_changes_in_scope 72753, num_ctx_changes_in_scope 5562
+[ 1377.360650] handling_time is 0
+[ 1377.360650] switch_ctx_time is 0
+[ 1377.360651] sc_time is 0
+[ 1377.360651] early_time 0
+[ 1377.360651] init_time 0
+[ 1377.360652] total_time 0
+[ 1377.360652] num_guest_exits 0
+
+[ 1521.696458] num_handled 4120000
+[ 1521.696459] num_switch_ctx_insts 10179
+[ 1521.696460] num_sc_entry 4109821, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1521.696461] irq_exits 0, num_recovered 0
+[ 1521.696461] usa_time 0, num_sc_changes_in_scope 146160, num_ctx_changes_in_scope 10174
+[ 1521.696461] handling_time is 0
+[ 1521.696462] switch_ctx_time is 0
+[ 1521.696462] sc_time is 0
+[ 1521.696462] early_time 0
+[ 1521.696463] init_time 0
+[ 1521.696463] total_time 0
+[ 1521.696463] num_guest_exits 0
+
+[ 1666.303033] num_handled 6180000
+[ 1666.303036] num_switch_ctx_insts 14803
+[ 1666.303039] num_sc_entry 6165197, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1666.303040] irq_exits 0, num_recovered 0
+[ 1666.303042] usa_time 0, num_sc_changes_in_scope 219609, num_ctx_changes_in_scope 14798
+[ 1666.303044] handling_time is 0
+[ 1666.303045] switch_ctx_time is 0
+[ 1666.303046] sc_time is 0
+[ 1666.303048] early_time 0
+[ 1666.303049] init_time 0
+[ 1666.303050] total_time 0
+[ 1666.303051] num_guest_exits 0
+
+[ 1845.427261] num_handled 8240000
+[ 1845.427263] num_switch_ctx_insts 20303
+[ 1845.427263] num_sc_entry 8219697, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1845.427264] irq_exits 0, num_recovered 0
+[ 1845.427264] usa_time 0, num_sc_changes_in_scope 294750, num_ctx_changes_in_scope 20298
+[ 1845.427265] handling_time is 0
+[ 1845.427265] switch_ctx_time is 0
+[ 1845.427265] sc_time is 0
+[ 1845.427266] early_time 0
+[ 1845.427266] init_time 0
+[ 1845.427266] total_time 0
+[ 1845.427267] num_guest_exits 0
+
+[ 1982.387789] num_handled 10300000
+[ 1982.387790] num_switch_ctx_insts 24705
+[ 1982.387791] num_sc_entry 10275295, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 1982.387792] irq_exits 0, num_recovered 0
+[ 1982.387792] usa_time 0, num_sc_changes_in_scope 367598, num_ctx_changes_in_scope 24700
+[ 1982.387793] handling_time is 0
+[ 1982.387793] switch_ctx_time is 0
+[ 1982.387793] sc_time is 0
+[ 1982.387794] early_time 0
+[ 1982.387794] init_time 0
+[ 1982.387794] total_time 0
+[ 1982.387795] num_guest_exits 0
+
+[ 2114.737381] num_handled 12360000
+[ 2114.737382] num_switch_ctx_insts 29087
+[ 2114.737383] num_sc_entry 12330913, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 2114.737383] irq_exits 0, num_recovered 0
+[ 2114.737384] usa_time 0, num_sc_changes_in_scope 441484, num_ctx_changes_in_scope 29082
+[ 2114.737384] handling_time is 0
+[ 2114.737385] switch_ctx_time is 0
+[ 2114.737385] sc_time is 0
+[ 2114.737385] early_time 0
+[ 2114.737386] init_time 0
+[ 2114.737386] total_time 0
+[ 2114.737386] num_guest_exits 0
+
+[ 2280.582672] num_handled 14420000
+[ 2280.582673] num_switch_ctx_insts 34239
+[ 2280.582673] num_sc_entry 14385761, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 2280.582674] irq_exits 0, num_recovered 0
+[ 2280.582674] usa_time 0, num_sc_changes_in_scope 516305, num_ctx_changes_in_scope 34234
+[ 2280.582675] handling_time is 0
+[ 2280.582675] switch_ctx_time is 0
+[ 2280.582675] sc_time is 0
+[ 2280.582676] early_time 0
+[ 2280.582676] init_time 0
+[ 2280.582676] total_time 0
+[ 2280.582677] num_guest_exits 0
+
+[ 2414.095892] num_handled 16480000
+[ 2414.095893] num_switch_ctx_insts 38521
+[ 2414.095894] num_sc_entry 16441479, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 2414.095894] irq_exits 0, num_recovered 0
+[ 2414.095895] usa_time 0, num_sc_changes_in_scope 589034, num_ctx_changes_in_scope 38516
+[ 2414.095895] handling_time is 0
+[ 2414.095895] switch_ctx_time is 0
+[ 2414.095896] sc_time is 0
+[ 2414.095896] early_time 0
+[ 2414.095896] init_time 0
+[ 2414.095897] total_time 0
+[ 2414.095897] num_guest_exits 0
+
+[ 2559.143535] num_handled 18540000
+[ 2559.143536] num_switch_ctx_insts 43089
+[ 2559.143537] num_sc_entry 18496911, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 2559.143538] irq_exits 0, num_recovered 0
+[ 2559.143538] usa_time 0, num_sc_changes_in_scope 662419, num_ctx_changes_in_scope 43084
+[ 2559.143539] handling_time is 0
+[ 2559.143539] switch_ctx_time is 0
+[ 2559.143539] sc_time is 0
+[ 2559.143540] early_time 0
+[ 2559.143540] init_time 0
+[ 2559.143540] total_time 0
+[ 2559.143541] num_guest_exits 0
+
+[ 2708.453275] num_handled 20600000
+[ 2708.453277] num_switch_ctx_insts 47993
+[ 2708.453278] num_sc_entry 20552007, num_sc_exit 0, num_ss_exits 0, num_logging_exits 0
+[ 2708.453279] irq_exits 0, num_recovered 0
+[ 2708.453279] usa_time 0, num_sc_changes_in_scope 735948, num_ctx_changes_in_scope 47988
+[ 2708.453280] handling_time is 0
+[ 2708.453280] switch_ctx_time is 0
+[ 2708.453281] sc_time is 0
+[ 2708.453281] early_time 0
+[ 2708.453282] init_time 0
+[ 2708.453282] total_time 0
+[ 2708.453283] num_guest_exits 0

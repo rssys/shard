@@ -1,0 +1,1 @@
+./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/protected-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 

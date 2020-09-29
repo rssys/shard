@@ -1,0 +1,194 @@
+257 9 --> 96 part_round_stats sd_uninit_command ata_bmdma_setup scsi_unprep_fn blk_add_timer blk_start_request default_wake_function scsi_io_completion ext4_release_io_end native_sched_clock blk_done_softirq ext4_put_io_end_defer sg_pool_free blk_finish_request blk_peek_request vmacache_find kfree ata_build_rw_tf ata_scsi_rw_xlat sched_clock_cpu swiotlb_tbl_map_single sg_free_table_chained blk_run_queue ata_bmdma_qc_issue scsi_handle_queue_ramp_up ata_bmdma_qc_prep clear_wb_congested sg_pool_alloc ext4_end_bio sd_done page_mapping enqueue_task_fair ata_qc_issue credit_entropy_bits bio_advance submit_bio_wait_endio blk_account_io_done ata_dev_select ata_qc_new_init deadline_dispatch_requests ata_sff_tf_load scsi_device_unbusy add_timer_randomness ioread8 scsi_init_io update_cfs_shares scsi_softirq_done __blk_put_request __wake_up_locked ata_bmdma_start mempool_alloc blk_rq_map_sg test_clear_page_writeback kmem_cache_alloc bio_put mempool_free_slab swiotlb_map_sg_attrs iowrite8 iowrite32 ata_sff_check_status scsi_setup_cmnd mempool_free scsi_init_command kmem_cache_free scsi_decide_disposition ___cache_free mempool_alloc_slab scsi_request_fn ata_sff_exec_command end_page_writeback ata_sff_dev_select free_request_size ata_scsi_queuecmd scsi_del_cmd_from_list elv_dispatch_add_tail ext4_finish_bio __sg_alloc_table __atime_needs_update check_preempt_wakeup blk_update_request wq_worker_waking_up blk_queue_start_tag blk_queue_end_tag sg_alloc_table_chained scsi_finish_command scsi_run_queue sd_init_command update_curr run_timer_softirq _mix_pool_bytes elv_completed_request bio_endio scsi_end_request scsi_prep_fn scsi_old_exit_rq try_to_wake_up
+257 10 --> 85 end_page_writeback scsi_init_io ata_sff_dev_select test_clear_page_writeback bio_endio part_round_stats ata_scsi_queuecmd vmacache_find scsi_softirq_done sg_free_table_chained sd_uninit_command ata_bmdma_setup elv_dispatch_add_tail __blk_put_request ext4_finish_bio scsi_setup_cmnd blk_run_queue ata_bmdma_qc_issue ata_bmdma_start find_vma mempool_alloc blk_done_softirq scsi_handle_queue_ramp_up blk_rq_map_sg scsi_finish_command ata_bmdma_qc_prep scsi_del_cmd_from_list scsi_unprep_fn blk_update_request clear_wb_congested mempool_alloc_slab kmem_cache_alloc mempool_free blk_queue_start_tag free_request_size sg_pool_alloc blk_add_timer blk_start_request scsi_request_fn sd_done scsi_io_completion scsi_end_request page_mapping bio_put mempool_free_slab kmem_cache_free native_sched_clock swiotlb_map_sg_attrs blk_queue_end_tag __sg_alloc_table sg_alloc_table_chained ata_qc_issue _mix_pool_bytes credit_entropy_bits iowrite8 scsi_run_queue ata_sff_check_status bio_advance sd_init_command ext4_end_bio ext4_put_io_end_defer scsi_prep_fn scsi_init_command ext4_release_io_end scsi_decide_disposition iowrite32 blk_account_io_done ___cache_free sg_pool_free blk_finish_request ata_qc_new_init blk_peek_request swiotlb_tbl_map_single deadline_dispatch_requests kfree ata_build_rw_tf elv_completed_request ata_sff_tf_load ata_dev_select ata_sff_exec_command scsi_device_unbusy ata_scsi_rw_xlat scsi_old_exit_rq add_timer_randomness ioread8
+257 11 --> 6 kmem_cache_free ___cache_free mark_page_accessed vmacache_find free_hot_cold_page kmem_cache_alloc
+257 12 --> 82 end_page_writeback part_round_stats ata_sff_dev_select free_request_size bio_endio scsi_init_io ata_scsi_queuecmd scsi_del_cmd_from_list sg_free_table_chained bio_put _mix_pool_bytes ata_bmdma_setup elv_dispatch_add_tail scsi_device_unbusy __blk_put_request ext4_finish_bio bio_advance blk_run_queue ata_bmdma_qc_issue ata_bmdma_start scsi_request_fn mempool_alloc ___cache_free scsi_handle_queue_ramp_up blk_rq_map_sg ata_bmdma_qc_prep scsi_unprep_fn blk_update_request clear_wb_congested deadline_dispatch_requests kmem_cache_alloc ext4_put_io_end_defer blk_queue_start_tag sg_pool_alloc blk_add_timer __sg_alloc_table sd_done scsi_io_completion page_mapping blk_done_softirq mempool_free_slab native_sched_clock swiotlb_map_sg_attrs ata_build_rw_tf blk_queue_end_tag sg_alloc_table_chained ata_qc_issue ata_sff_exec_command credit_entropy_bits scsi_finish_command scsi_run_queue ata_sff_check_status scsi_setup_cmnd sd_init_command ext4_end_bio mempool_free scsi_prep_fn scsi_init_command kmem_cache_free scsi_decide_disposition iowrite32 blk_account_io_done scsi_softirq_done sg_pool_free ata_dev_select ata_qc_new_init blk_peek_request swiotlb_tbl_map_single test_clear_page_writeback scsi_old_exit_rq kfree mempool_alloc_slab elv_completed_request ata_sff_tf_load blk_finish_request blk_start_request sd_uninit_command scsi_end_request ata_scsi_rw_xlat iowrite8 add_timer_randomness ioread8
+257 13 --> 0
+257 14 --> 0
+257 16 --> 0
+257 21 --> 98 part_round_stats sd_uninit_command ata_bmdma_setup set_root.1745 scsi_unprep_fn link_path_walk blk_add_timer blk_start_request scsi_io_completion ext4_release_io_end native_sched_clock blk_queue_end_tag free_block ext4_put_io_end_defer sg_pool_free blk_finish_request path_init lookup_fast swiotlb_tbl_map_single kfree ata_build_rw_tf terminate_walk ata_scsi_rw_xlat blk_peek_request sg_free_table_chained blk_run_queue ata_bmdma_qc_issue kmem_freepages scsi_handle_queue_ramp_up ata_bmdma_qc_prep clear_wb_congested sg_pool_alloc ext4_end_bio walk_component sd_done page_mapping getname_flags ata_qc_issue credit_entropy_bits bio_advance blk_account_io_done ata_dev_select ata_qc_new_init deadline_dispatch_requests ata_sff_tf_load __follow_mount_rcu scsi_device_unbusy add_timer_randomness ioread8 scsi_init_io scsi_softirq_done __blk_put_request strncpy_from_user ata_bmdma_start mempool_alloc blk_rq_map_sg test_clear_page_writeback kmem_cache_alloc bio_put generic_permission mempool_free_slab swiotlb_map_sg_attrs iowrite8 ata_sff_check_status scsi_setup_cmnd mempool_free scsi_init_command kmem_cache_free scsi_decide_disposition ___cache_free mempool_alloc_slab scsi_request_fn ata_sff_exec_command __d_lookup_rcu end_page_writeback ata_sff_dev_select free_request_size ata_scsi_queuecmd scsi_del_cmd_from_list elv_dispatch_add_tail ext4_finish_bio __sg_alloc_table sg_alloc_table_chained blk_update_request free_hot_cold_page blk_queue_start_tag blk_done_softirq scsi_finish_command scsi_run_queue sd_init_command iowrite32 call_rcu_sched _mix_pool_bytes elv_completed_request bio_endio scsi_end_request scsi_prep_fn scsi_old_exit_rq
+257 28 --> 27 read_hpet add_timer_on clocksource_watchdog update_cfs_shares ktime_get free_hot_cold_page kmem_cache_alloc tcp_delack_timer_handler internal_add_timer tcp_delack_timer mod_timer kmem_cache_free native_sched_clock enqueue_task_fair free_block check_preempt_wakeup kmalloc_slab cache_alloc_refill read_tsc update_curr run_timer_softirq ___cache_free vmacache_find kfree try_to_wake_up sched_clock_cpu tsc_cs_tick_stable
+257 158 --> 0
+257 39 --> 1 run_timer_softirq
+257 302 --> 0
+257 56 --> 11 update_curr check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares kmem_cache_alloc ktime_get kmalloc_slab __kmalloc sched_clock_cpu read_tsc
+257 218 --> 0
+257 231 --> 16 update_curr check_preempt_wakeup __wake_up_common_lock kmem_cache_free native_sched_clock enqueue_task_fair ___cache_free mark_page_accessed update_cfs_shares kfree free_hot_cold_page dput sched_clock_cpu try_to_wake_up kmem_cache_alloc mntput_no_expire
+257 112 --> 1 call_rcu_sched
+273 9 --> 0
+273 10 --> 0
+273 11 --> 0
+273 12 --> 0
+273 13 --> 0
+273 14 --> 0
+273 16 --> 0
+273 21 --> 0
+273 28 --> 0
+273 158 --> 0
+273 39 --> 0
+273 302 --> 0
+273 56 --> 0
+273 218 --> 0
+273 231 --> 0
+273 112 --> 0
+22 9 --> 1 kmem_cache_alloc
+22 10 --> 1 kmem_cache_alloc
+22 11 --> 1 kmem_cache_alloc
+22 12 --> 1 kmem_cache_alloc
+22 13 --> 0
+22 14 --> 0
+22 16 --> 0
+22 21 --> 1 kmem_cache_alloc
+22 28 --> 2 kmalloc_slab kmem_cache_alloc
+22 158 --> 0
+22 39 --> 0
+22 302 --> 0
+22 56 --> 3 kmalloc_slab kmem_cache_alloc __kmalloc
+22 218 --> 0
+22 231 --> 1 kmem_cache_alloc
+22 112 --> 0
+41 9 --> 12 update_curr check_preempt_wakeup kmem_cache_free native_sched_clock enqueue_task_fair ___cache_free update_cfs_shares kfree kmem_cache_alloc wq_worker_waking_up sched_clock_cpu try_to_wake_up
+41 10 --> 5 kfree native_sched_clock kmem_cache_alloc ___cache_free kmem_cache_free
+41 11 --> 3 kmem_cache_free kmem_cache_alloc ___cache_free
+41 12 --> 5 kfree native_sched_clock kmem_cache_alloc ___cache_free kmem_cache_free
+41 13 --> 0
+41 14 --> 0
+41 16 --> 0
+41 21 --> 6 kmem_cache_free ___cache_free native_sched_clock call_rcu_sched kfree kmem_cache_alloc
+41 28 --> 21 __switch_to check_preempt_wakeup finish_task_switch raise_softirq update_curr native_sched_clock enqueue_task_fair ___cache_free update_cfs_shares kfree set_tracking __kmalloc_track_caller sched_clock_cpu pick_next_task_fair pick_next_entity switch_mm_irqs_off kmalloc_slab kmem_cache_alloc cache_alloc_refill try_to_wake_up kmem_cache_free
+41 158 --> 0
+41 39 --> 0
+41 302 --> 0
+41 56 --> 9 update_curr check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares kmem_cache_alloc kmalloc_slab __kmalloc sched_clock_cpu
+41 218 --> 0
+41 231 --> 19 __switch_to dequeue_task_fair check_preempt_wakeup __wake_up_common_lock raise_softirq update_curr native_sched_clock enqueue_task_fair ___cache_free update_cfs_shares kfree set_tracking kmem_cache_alloc sched_clock_cpu pick_next_task_fair pick_next_entity switch_mm_irqs_off try_to_wake_up kmem_cache_free
+41 112 --> 1 call_rcu_sched
+43 9 --> 14 update_curr run_timer_softirq check_preempt_wakeup kmem_cache_free native_sched_clock fput enqueue_task_fair ___cache_free update_cfs_shares kfree kmem_cache_alloc wq_worker_waking_up sched_clock_cpu try_to_wake_up
+43 10 --> 5 native_sched_clock kmem_cache_free kmem_cache_alloc kfree ___cache_free
+43 11 --> 6 kmem_cache_free get_page_from_freelist ___cache_free fput kmem_cache_alloc __alloc_pages_nodemask
+43 12 --> 5 native_sched_clock kmem_cache_free kmem_cache_alloc kfree ___cache_free
+43 13 --> 0
+43 14 --> 0
+43 16 --> 2 fput __fget_light
+43 21 --> 6 kmem_cache_free ___cache_free native_sched_clock free_block kfree kmem_cache_alloc
+43 28 --> 26 read_hpet get_page_from_freelist clocksource_watchdog update_cfs_shares sched_clock_cpu kmem_cache_free ktime_get kmem_cache_alloc internal_add_timer update_curr native_sched_clock enqueue_task_fair free_block __rmqueue check_preempt_wakeup kmalloc_slab cache_alloc_refill read_tsc add_timer_on run_timer_softirq ___cache_free __local_bh_enable_ip kfree __alloc_pages_nodemask try_to_wake_up tsc_cs_tick_stable
+43 158 --> 0
+43 39 --> 1 run_timer_softirq
+43 302 --> 0
+43 56 --> 14 update_curr check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares __rmqueue kmem_cache_alloc __alloc_pages_nodemask get_page_from_freelist kmalloc_slab ktime_get __kmalloc sched_clock_cpu read_tsc
+43 218 --> 0
+43 231 --> 14 update_curr check_preempt_wakeup kmem_cache_free native_sched_clock fput enqueue_task_fair ___cache_free update_cfs_shares kfree kmem_cache_alloc __alloc_pages_nodemask get_page_from_freelist sched_clock_cpu try_to_wake_up
+43 112 --> 0
+49 9 --> 1 kmem_cache_alloc
+49 10 --> 1 kmem_cache_alloc
+49 11 --> 1 kmem_cache_alloc
+49 12 --> 1 kmem_cache_alloc
+49 13 --> 0
+49 14 --> 0
+49 16 --> 1 __fget_light
+49 21 --> 1 kmem_cache_alloc
+49 28 --> 3 dst_release kmem_cache_alloc __local_bh_enable_ip
+49 158 --> 0
+49 39 --> 0
+49 302 --> 0
+49 56 --> 1 kmem_cache_alloc
+49 218 --> 0
+49 231 --> 1 kmem_cache_alloc
+49 112 --> 0
+50 9 --> 0
+50 10 --> 0
+50 11 --> 0
+50 12 --> 0
+50 13 --> 0
+50 14 --> 0
+50 16 --> 1 __fget_light
+50 21 --> 0
+50 28 --> 2 dst_release __local_bh_enable_ip
+50 158 --> 0
+50 39 --> 0
+50 302 --> 0
+50 56 --> 0
+50 218 --> 0
+50 231 --> 0
+50 112 --> 0
+54 9 --> 56 end_page_writeback part_round_stats _mix_pool_bytes free_request_size bio_endio update_cfs_shares scsi_del_cmd_from_list sg_free_table_chained update_curr sd_uninit_command __blk_put_request ext4_finish_bio deadline_dispatch_requests blk_run_queue scsi_request_fn ___cache_free check_preempt_wakeup scsi_handle_queue_ramp_up fput test_clear_page_writeback scsi_unprep_fn blk_update_request clear_wb_congested ext4_put_io_end_defer ext4_end_bio bio_put scsi_io_completion page_mapping blk_queue_end_tag mempool_free_slab ext4_release_io_end native_sched_clock enqueue_task_fair blk_done_softirq add_timer_randomness credit_entropy_bits scsi_finish_command scsi_run_queue bio_advance scsi_device_unbusy mempool_free kmem_cache_free scsi_decide_disposition run_timer_softirq blk_account_io_done scsi_softirq_done sg_pool_free blk_finish_request blk_peek_request kfree elv_completed_request sched_clock_cpu scsi_end_request sd_done scsi_old_exit_rq try_to_wake_up
+54 10 --> 48 end_page_writeback part_round_stats _mix_pool_bytes free_request_size scsi_del_cmd_from_list sg_free_table_chained sd_uninit_command __blk_put_request ext4_finish_bio deadline_dispatch_requests blk_run_queue scsi_request_fn ___cache_free scsi_handle_queue_ramp_up test_clear_page_writeback scsi_unprep_fn blk_update_request clear_wb_congested ext4_put_io_end_defer ext4_end_bio bio_put scsi_io_completion page_mapping blk_queue_end_tag mempool_free_slab ext4_release_io_end native_sched_clock blk_done_softirq credit_entropy_bits scsi_finish_command scsi_run_queue bio_advance scsi_device_unbusy mempool_free kmem_cache_free scsi_decide_disposition blk_account_io_done scsi_softirq_done sg_pool_free blk_finish_request blk_peek_request kfree elv_completed_request bio_endio scsi_end_request sd_done scsi_old_exit_rq add_timer_randomness
+54 11 --> 3 fput ___cache_free kmem_cache_free
+54 12 --> 47 end_page_writeback part_round_stats _mix_pool_bytes free_request_size scsi_softirq_done sg_free_table_chained sd_uninit_command __blk_put_request ext4_finish_bio deadline_dispatch_requests blk_run_queue scsi_request_fn ___cache_free scsi_handle_queue_ramp_up test_clear_page_writeback scsi_unprep_fn blk_update_request clear_wb_congested ext4_put_io_end_defer ext4_end_bio sd_done scsi_io_completion page_mapping blk_done_softirq mempool_free_slab native_sched_clock blk_queue_end_tag credit_entropy_bits scsi_finish_command scsi_run_queue bio_advance scsi_device_unbusy mempool_free kmem_cache_free scsi_decide_disposition blk_account_io_done scsi_del_cmd_from_list sg_pool_free blk_finish_request blk_peek_request kfree elv_completed_request bio_endio scsi_end_request bio_put scsi_old_exit_rq add_timer_randomness
+54 13 --> 0
+54 14 --> 0
+54 16 --> 2 fput __fget_light
+54 21 --> 48 end_page_writeback part_round_stats _mix_pool_bytes free_request_size scsi_del_cmd_from_list sg_free_table_chained sd_uninit_command __blk_put_request ext4_finish_bio deadline_dispatch_requests blk_run_queue scsi_request_fn ___cache_free scsi_handle_queue_ramp_up test_clear_page_writeback scsi_unprep_fn blk_update_request clear_wb_congested ext4_put_io_end_defer ext4_end_bio bio_put scsi_io_completion page_mapping blk_queue_end_tag mempool_free_slab ext4_release_io_end native_sched_clock blk_done_softirq credit_entropy_bits scsi_finish_command scsi_run_queue bio_advance scsi_device_unbusy mempool_free kmem_cache_free scsi_decide_disposition blk_account_io_done scsi_softirq_done sg_pool_free blk_finish_request blk_peek_request kfree elv_completed_request bio_endio scsi_end_request sd_done scsi_old_exit_rq add_timer_randomness
+54 28 --> 20 add_timer_on read_hpet mod_timer check_preempt_wakeup kmem_cache_free native_sched_clock clocksource_watchdog enqueue_task_fair ___cache_free __local_bh_enable_ip update_cfs_shares kfree run_timer_softirq update_curr sched_clock_cpu tsc_cs_tick_stable ktime_get internal_add_timer try_to_wake_up read_tsc
+54 158 --> 0
+54 39 --> 1 run_timer_softirq
+54 302 --> 0
+54 56 --> 8 update_curr check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares ktime_get sched_clock_cpu read_tsc
+54 218 --> 0
+54 231 --> 12 kmem_cache_free check_preempt_wakeup __wake_up_common_lock update_curr native_sched_clock fput enqueue_task_fair ___cache_free update_cfs_shares kfree sched_clock_cpu try_to_wake_up
+54 112 --> 0
+202 9 --> 5 native_sched_clock fput sched_clock_cpu update_cfs_shares update_curr
+202 10 --> 1 native_sched_clock
+202 11 --> 1 fput
+202 12 --> 1 native_sched_clock
+202 13 --> 0
+202 14 --> 0
+202 16 --> 1 fput
+202 21 --> 1 native_sched_clock
+202 28 --> 11 __switch_to hrtimer_try_to_cancel update_curr native_sched_clock update_cfs_shares set_tracking pick_next_task_fair switch_mm_irqs_off finish_task_switch sched_clock_cpu pick_next_entity
+202 158 --> 0
+202 39 --> 0
+202 302 --> 0
+202 56 --> 4 native_sched_clock update_curr sched_clock_cpu update_cfs_shares
+202 218 --> 0
+202 231 --> 12 __switch_to dequeue_task_fair hrtimer_try_to_cancel update_curr native_sched_clock fput update_cfs_shares set_tracking pick_next_task_fair switch_mm_irqs_off sched_clock_cpu pick_next_entity
+202 112 --> 0
+213 9 --> 1 kmem_cache_alloc
+213 10 --> 1 kmem_cache_alloc
+213 11 --> 1 kmem_cache_alloc
+213 12 --> 1 kmem_cache_alloc
+213 13 --> 0
+213 14 --> 0
+213 16 --> 0
+213 21 --> 1 kmem_cache_alloc
+213 28 --> 2 kmalloc_slab kmem_cache_alloc
+213 158 --> 0
+213 39 --> 0
+213 302 --> 0
+213 56 --> 3 kmalloc_slab kmem_cache_alloc __kmalloc
+213 218 --> 0
+213 231 --> 1 kmem_cache_alloc
+213 112 --> 0
+232 9 --> 94 part_round_stats sd_uninit_command ata_bmdma_setup scsi_unprep_fn blk_add_timer blk_start_request default_wake_function scsi_io_completion ext4_release_io_end native_sched_clock blk_done_softirq ext4_put_io_end_defer sg_pool_free blk_finish_request blk_peek_request vmacache_find kfree ata_build_rw_tf ata_scsi_rw_xlat sched_clock_cpu swiotlb_tbl_map_single sg_free_table_chained ata_bmdma_qc_issue scsi_handle_queue_ramp_up ata_bmdma_qc_prep clear_wb_congested sg_pool_alloc ext4_end_bio sd_done page_mapping enqueue_task_fair ata_qc_issue credit_entropy_bits bio_advance submit_bio_wait_endio blk_account_io_done ata_dev_select ata_qc_new_init deadline_dispatch_requests ata_sff_tf_load scsi_device_unbusy add_timer_randomness ioread8 scsi_init_io update_cfs_shares scsi_softirq_done __blk_put_request ata_bmdma_start mempool_alloc blk_rq_map_sg test_clear_page_writeback kmem_cache_alloc bio_put mempool_free_slab swiotlb_map_sg_attrs iowrite8 iowrite32 ata_sff_check_status scsi_setup_cmnd mempool_free scsi_init_command kmem_cache_free scsi_decide_disposition ___cache_free mempool_alloc_slab scsi_request_fn ata_sff_exec_command end_page_writeback ata_sff_dev_select free_request_size ata_scsi_queuecmd scsi_del_cmd_from_list elv_dispatch_add_tail ext4_finish_bio __sg_alloc_table sg_alloc_table_chained check_preempt_wakeup fput blk_update_request wq_worker_waking_up blk_queue_start_tag blk_queue_end_tag scsi_finish_command scsi_run_queue sd_init_command update_curr run_timer_softirq _mix_pool_bytes elv_completed_request bio_endio scsi_end_request scsi_prep_fn scsi_old_exit_rq try_to_wake_up
+232 10 --> 84 end_page_writeback scsi_init_io ata_sff_dev_select test_clear_page_writeback bio_endio part_round_stats ata_scsi_queuecmd vmacache_find scsi_softirq_done sg_free_table_chained sd_uninit_command ata_bmdma_setup elv_dispatch_add_tail __blk_put_request ext4_finish_bio scsi_setup_cmnd ata_bmdma_qc_issue ata_bmdma_start find_vma mempool_alloc blk_done_softirq scsi_handle_queue_ramp_up blk_rq_map_sg scsi_finish_command ata_bmdma_qc_prep scsi_del_cmd_from_list scsi_unprep_fn blk_update_request clear_wb_congested mempool_alloc_slab kmem_cache_alloc mempool_free blk_queue_start_tag free_request_size sg_pool_alloc blk_add_timer blk_start_request scsi_request_fn sd_done scsi_io_completion scsi_end_request page_mapping bio_put mempool_free_slab kmem_cache_free native_sched_clock swiotlb_map_sg_attrs blk_queue_end_tag __sg_alloc_table sg_alloc_table_chained ata_qc_issue _mix_pool_bytes credit_entropy_bits iowrite8 scsi_run_queue ata_sff_check_status bio_advance sd_init_command ext4_end_bio ext4_put_io_end_defer scsi_prep_fn scsi_init_command ext4_release_io_end scsi_decide_disposition iowrite32 blk_account_io_done ___cache_free sg_pool_free blk_finish_request ata_qc_new_init blk_peek_request swiotlb_tbl_map_single deadline_dispatch_requests kfree ata_build_rw_tf elv_completed_request ata_sff_tf_load ata_dev_select ata_sff_exec_command scsi_device_unbusy ata_scsi_rw_xlat scsi_old_exit_rq add_timer_randomness ioread8
+232 11 --> 7 kmem_cache_free get_page_from_freelist ___cache_free fput vmacache_find kmem_cache_alloc __alloc_pages_nodemask
+232 12 --> 81 end_page_writeback part_round_stats ata_sff_dev_select free_request_size bio_endio scsi_init_io ata_scsi_queuecmd scsi_del_cmd_from_list sg_free_table_chained bio_put _mix_pool_bytes ata_bmdma_setup elv_dispatch_add_tail scsi_device_unbusy __blk_put_request ext4_finish_bio bio_advance ata_bmdma_qc_issue ata_bmdma_start scsi_request_fn mempool_alloc ___cache_free scsi_handle_queue_ramp_up blk_rq_map_sg ata_bmdma_qc_prep scsi_unprep_fn blk_update_request clear_wb_congested deadline_dispatch_requests kmem_cache_alloc ext4_put_io_end_defer blk_queue_start_tag sg_pool_alloc blk_add_timer __sg_alloc_table sd_done scsi_io_completion page_mapping blk_done_softirq mempool_free_slab native_sched_clock swiotlb_map_sg_attrs ata_build_rw_tf blk_queue_end_tag sg_alloc_table_chained ata_qc_issue ata_sff_exec_command credit_entropy_bits scsi_finish_command scsi_run_queue ata_sff_check_status scsi_setup_cmnd sd_init_command ext4_end_bio mempool_free scsi_prep_fn scsi_init_command kmem_cache_free scsi_decide_disposition iowrite32 blk_account_io_done scsi_softirq_done sg_pool_free ata_dev_select ata_qc_new_init blk_peek_request swiotlb_tbl_map_single test_clear_page_writeback scsi_old_exit_rq kfree mempool_alloc_slab elv_completed_request ata_sff_tf_load blk_finish_request blk_start_request sd_uninit_command scsi_end_request ata_scsi_rw_xlat iowrite8 add_timer_randomness ioread8
+232 13 --> 0
+232 14 --> 0
+232 16 --> 2 fput __fget_light
+232 21 --> 82 end_page_writeback scsi_init_io ata_sff_dev_select test_clear_page_writeback bio_endio part_round_stats ata_scsi_queuecmd scsi_softirq_done sg_free_table_chained sd_uninit_command ata_bmdma_setup elv_dispatch_add_tail __blk_put_request ext4_finish_bio scsi_setup_cmnd ata_bmdma_qc_issue ata_bmdma_start deadline_dispatch_requests mempool_alloc blk_done_softirq scsi_handle_queue_ramp_up blk_rq_map_sg scsi_finish_command ata_bmdma_qc_prep scsi_del_cmd_from_list scsi_unprep_fn blk_update_request clear_wb_congested mempool_alloc_slab kmem_cache_alloc mempool_free blk_queue_start_tag free_request_size sg_pool_alloc blk_add_timer blk_start_request scsi_request_fn sd_done scsi_io_completion scsi_end_request page_mapping bio_put mempool_free_slab kmem_cache_free native_sched_clock swiotlb_map_sg_attrs blk_queue_end_tag __sg_alloc_table sg_alloc_table_chained ata_qc_issue _mix_pool_bytes credit_entropy_bits iowrite8 scsi_run_queue ata_sff_check_status bio_advance sd_init_command ext4_end_bio ext4_put_io_end_defer scsi_prep_fn scsi_init_command ext4_release_io_end scsi_decide_disposition iowrite32 blk_account_io_done ___cache_free sg_pool_free blk_finish_request ata_qc_new_init blk_peek_request swiotlb_tbl_map_single kfree ata_build_rw_tf elv_completed_request ata_sff_tf_load ata_dev_select ata_sff_exec_command scsi_device_unbusy ata_scsi_rw_xlat scsi_old_exit_rq add_timer_randomness ioread8
+232 28 --> 83 tcp_send_ack read_hpet skb_network_protocol hrtimer_try_to_cancel get_page_from_freelist raise_softirq ip_rcv clocksource_watchdog netif_rx_internal tcp_schedule_loss_probe __dev_queue_xmit __kfree_skb update_cfs_shares memcg_check_events __kmalloc_track_caller process_backlog raw_local_deliver skb_release_head_state tcp_v4_send_check tcp_ack kmalloc_slab __inet_lookup_established dst_release finish_task_switch __sock_wfree check_preempt_wakeup __alloc_skb bictcp_cwnd_event tcp_v4_rcv ip_output kmem_cache_alloc __sk_dst_check tcp_delack_timer_handler try_to_wake_up tcp_transmit_skb tcp_rate_skb_delivered tcp_options_write tcp_delack_timer __tcp_select_window net_rx_action __netif_receive_skb_core __switch_to inet_ehashfn mod_timer ip_local_deliver kmem_cache_free native_sched_clock update_curr enqueue_task_fair pick_next_task_fair tcp_ack_update_rtt skb_release_data bictcp_acked loopback_xmit run_timer_softirq ipv4_mtu tcp_chrono_stop ip_finish_output2 ipv4_dst_check switch_mm_irqs_off bictcp_cong_avoid cache_alloc_refill read_tsc add_timer_on sk_filter_trim_cap internal_add_timer __sk_mem_reduce_allocated ___cache_free eth_type_trans tcp_rate_gen tcp_v4_do_rcv vmacache_find __local_bh_enable_ip kfree set_tracking validate_xmit_skb __alloc_pages_nodemask pick_next_entity netif_skb_features del_timer ip_queue_xmit sched_clock_cpu tsc_cs_tick_stable
+232 158 --> 0
+232 39 --> 1 run_timer_softirq
+232 302 --> 0
+232 56 --> 12 update_curr ktime_get_with_offset check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares kmem_cache_alloc __alloc_pages_nodemask get_page_from_freelist kmalloc_slab sched_clock_cpu read_tsc
+232 218 --> 0
+232 231 --> 24 hrtimer_try_to_cancel get_page_from_freelist __wake_up_common_lock raise_softirq memcg_check_events update_cfs_shares try_to_wake_up set_tracking check_preempt_wakeup fput kmem_cache_alloc pick_next_task_fair __switch_to dequeue_task_fair kmem_cache_free native_sched_clock enqueue_task_fair switch_mm_irqs_off update_curr ___cache_free kfree __alloc_pages_nodemask pick_next_entity sched_clock_cpu
+232 112 --> 0
+233 9 --> 13 kmem_cache_free run_timer_softirq check_preempt_wakeup ___cache_free native_sched_clock update_curr enqueue_task_fair update_cfs_shares kfree kmem_cache_alloc try_to_wake_up fput sched_clock_cpu
+233 10 --> 5 native_sched_clock kfree kmem_cache_alloc ___cache_free kmem_cache_free
+233 11 --> 6 kmem_cache_free get_page_from_freelist ___cache_free fput kmem_cache_alloc __alloc_pages_nodemask
+233 12 --> 5 kfree native_sched_clock kmem_cache_alloc ___cache_free kmem_cache_free
+233 13 --> 0
+233 14 --> 0
+233 16 --> 2 fput __fget_light
+233 21 --> 7 kmem_cache_free ___cache_free native_sched_clock call_rcu_sched free_block kfree kmem_cache_alloc
+233 28 --> 97 tcp_rcv_state_process hrtimer_try_to_cancel get_page_from_freelist clocksource_watchdog __kmalloc_track_caller tcp_get_metrics tcp_fastopen_active_disable_ofo_check ktime_get tcp_delack_timer_handler mod_timer native_sched_clock free_block tcp_chrono_stop ip_finish_output2 bictcp_cong_avoid read_tsc internal_add_timer eth_type_trans kfree inet_twsk_alloc process_backlog sched_clock_cpu read_hpet add_timer_on mem_cgroup_sk_free tcp_v4_send_check __inet_lookup_established __sock_wfree inet_twsk_put __alloc_skb __inet_twsk_hashdance tcp_v4_rcv net_rx_action ip_local_deliver inet_csk_clear_xmit_timers enqueue_task_fair skb_release_data cache_alloc_refill sk_filter_trim_cap tcp_update_metrics __local_bh_enable_ip validate_xmit_skb __alloc_pages_nodemask del_timer tcp_done skb_network_protocol tcp_transmit_skb tcp_schedule_loss_probe __dev_queue_xmit update_cfs_shares tcp_validate_incoming skb_release_head_state sk_stream_kill_queues dst_release tcp_v4_do_rcv kmem_cache_alloc tcp_delack_timer inet_ehashfn inet_unhash loopback_xmit ipv4_dst_check netlink_has_listeners inet_csk_destroy_sock kmalloc_slab tcp_v4_destroy_sock kmem_cache_free __sk_mem_reduce_allocated ___cache_free inet_sock_destruct __sk_destruct __netif_receive_skb_core ip_queue_xmit tcp_send_ack ip_rcv tcp_ack netif_rx_internal __kfree_skb raw_local_deliver ip_output __sk_free tcp_time_wait bictcp_cwnd_event __sk_dst_check tcp_rate_skb_delivered tcp_options_write netif_skb_features tcp_rate_gen inet_put_port __tcp_select_window tcp_ack_update_rtt bictcp_acked check_preempt_wakeup update_curr run_timer_softirq ipv4_mtu try_to_wake_up tsc_cs_tick_stable
+233 158 --> 0
+233 39 --> 1 run_timer_softirq
+233 302 --> 0
+233 56 --> 12 update_curr check_preempt_wakeup native_sched_clock enqueue_task_fair update_cfs_shares ktime_get kmem_cache_alloc __alloc_pages_nodemask get_page_from_freelist kmalloc_slab sched_clock_cpu read_tsc
+233 218 --> 0
+233 231 --> 15 update_curr hrtimer_try_to_cancel get_page_from_freelist kmem_cache_free native_sched_clock fput enqueue_task_fair ___cache_free update_cfs_shares kfree kmem_cache_alloc __alloc_pages_nodemask try_to_wake_up check_preempt_wakeup sched_clock_cpu
+233 112 --> 1 call_rcu_sched
+8.067708333333334
+98

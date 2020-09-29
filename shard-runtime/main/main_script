@@ -1,0 +1,7 @@
+cd ~/Repositories/linux-stable &&
+./build_kvm_module && 
+sudo dmesg -c &&
+cd ~/Repositories/linux-stable-qemu &&
+./run_script.sh &&
+cd ~/Repositories/kvm/qemu/build/x86_64-softmmu/ &&
+./make_and_run

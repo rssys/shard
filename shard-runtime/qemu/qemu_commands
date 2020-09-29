@@ -1,0 +1,42 @@
+# configure
+../configure --enable-curses --enable-gtk --python=python2.7 --target-list=x86_64-softmmu
+
+# fresh installation
+sudo ./qemu-system-x86_64 -m 2048 -enable-kvm -smp 3 -net nic -net user -hda ubuntu18.img 
+
+# boot os on disk
+sudo ./qemu-system-x86_64 -m 2048 -enable-kvm -smp 3 -net nic -net user -hda ubuntu18.img 
+
+# ssh in
+sudo qemu-system-x86_64 -m 4G -enable-kvm -smp 3 -net nic -net user,hostfwd=tcp::10022-:22 -hda host_machine.img
+#ssh muhammad@127.0.0.1 -p 10022
+
+
+# boot from kernel
+sudo ./qemu-system-x86_64 -append 'console=ttyS0' -initrd /boot/initrd.img-4.18.0-15-generic -kernel /boot/vmlinuz-4.18.0-15-generic -nographic -serial mon:stdio -m 2048 -enable-kvm -smp 3 -net nic -net user -hda ubuntu18.img
+
+sudo ./qemu-system-x86_64 -append 'console=ttyS0' -initrd /boot/initrd.img-4.18.0-15-generic -kernel ~/Repositories/linux-stable-qemu/arch/x86/boot/bzImage -nographic -serial mon:stdio -m 2048 -enable-kvm -smp 3 -net nic -net user -hda ubuntu18.img
+
+sudo qemu-system-x86_64 -m 1024M -hda ubuntu18.img -enable-kvm -initrd ramdisk.img -kernel ~/Repositories/linux-stable-qemu/arch/x86/boot/bzImage -append "root=/dev/sda1 console=ttyS0" -nographic -redir tcp:2222::22 -cpu host -smp cores=2
+
+sudo ./qemu-system-x86_64 -m 2048M -hda ubuntu18.img -enable-kvm -initrd ramdisk.img -kernel ~/Repositories/linux-stable-qemu/arch/x86/boot/bzImage -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -smp cores=2
+
+https://stackoverflow.com/questions/17242403/linux-running-self-compiled-kernel-in-qemu-vfs-unable-to-mount-root-fs-on-unk
+
+# nographic
+https://serverfault.com/questions/471719/how-to-start-qemu-directly-in-the-console-not-in-curses-or-sdl
+
+# run linux-host without installation media
+sudo qemu-system-x86_64 -hda linux-host.img  -m 2048M -enable-kvm
+ssh
+https://www.cnx-software.com/2011/10/02/how-to-transfer-files-between-host-and-qemu-via-ssh-and-nfs/
+
+ -redir tcp:2222::22  sudo qemu-system-x86_64 -hda linux-host.img  -m 2048M -enable-kvm -nic user,hostfwd=tcp::2222:22
+
+ sudo qemu-system-x86_64 -hda linux-host.img  -m 2048M -enable-kvm -netdev user,id=ethernet.0,hostfwd=tcp::2222:22
+
+sudo qemu-system-x86_64 -hda linux-host.img  -m 2048M -enable-kvm -net user,hostfwd=tcp::2222-:22
+
+
+
+sudo qemu-system-x86_64  -m 2048M -enable-kvm -smp 3 -hda linux-host.img

@@ -1,0 +1,5 @@
+Modify the tracked_proc_list array in debloating.h to set the list of tracked processes
+copy these files to HOST_KERNEL/arch/x86/kvm/.
+update shard_work_dir.h to set the shard working directory path
+
+Rebuild and load the kernel kvm modules by running build_kvm_module at host kernel root

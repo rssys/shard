@@ -1,0 +1,13 @@
+Based on the callsites_info, we initialize callsite target tables and add CFI checks
+
+
+struct CallSite_to_Func {
+	int id;
+	void (*target)(void);
+};
+
+We create a table of the type CallSite_to_Func called "callsite_targets". An LLVM pass adds one entry in this table for each callsite, target pair. (So if a callsite x has 10 targets their will be 10 entries in the table).
+
+At kernel boot time we iterate over this "callsite_targets" table and call "add_to_ht" once for each of its entries. "add_to_ht" will set the frame and offset table corresponding to the callsite based on the target.
+
+The LLVM pass mentioned earlier also adds a call to "check_ci" before each indirect call site.

@@ -1,0 +1,1 @@
+opt -load /home/muhammad/Repositories/specialization/lib/AddSCFuncs.so -sc-instrumentation ${1}.bc -o ${2}.bc

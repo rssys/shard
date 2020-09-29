@@ -1,0 +1,174 @@
+1001
+Time taken for tests:   2.127 seconds
+1001
+Time taken for tests:   2.079 seconds
+1001
+Time taken for tests:   2.033 seconds
+1001
+Time taken for tests:   2.133 seconds
+1001
+Time taken for tests:   2.338 seconds
+1001
+Time taken for tests:   2.203 seconds
+1001
+Time taken for tests:   2.338 seconds
+1001
+Time taken for tests:   2.213 seconds
+1001
+Time taken for tests:   2.683 seconds
+1001
+Time taken for tests:   2.082 seconds
+mean 2.2229
+median 2.203
+2001
+Time taken for tests:   4.448 seconds
+2001
+Time taken for tests:   2.853 seconds
+2001
+Time taken for tests:   3.694 seconds
+2001
+Time taken for tests:   2.541 seconds
+2001
+Time taken for tests:   2.622 seconds
+2001
+Time taken for tests:   2.526 seconds
+2001
+Time taken for tests:   2.385 seconds
+2001
+Time taken for tests:   2.373 seconds
+2001
+Time taken for tests:   2.544 seconds
+2001
+Time taken for tests:   2.461 seconds
+mean 2.8447
+median 2.544
+4001
+Time taken for tests:   2.670 seconds
+4001
+Time taken for tests:   3.111 seconds
+4001
+Time taken for tests:   2.589 seconds
+4001
+Time taken for tests:   2.823 seconds
+4001
+Time taken for tests:   2.781 seconds
+4001
+Time taken for tests:   2.778 seconds
+4001
+Time taken for tests:   2.818 seconds
+4001
+Time taken for tests:   2.818 seconds
+4001
+Time taken for tests:   2.926 seconds
+4001
+Time taken for tests:   2.781 seconds
+mean 2.8095000000000003
+median 2.818
+8001
+Time taken for tests:   3.239 seconds
+8001
+Time taken for tests:   3.253 seconds
+8001
+Time taken for tests:   3.281 seconds
+8001
+Time taken for tests:   2.965 seconds
+8001
+Time taken for tests:   4.309 seconds
+8001
+Time taken for tests:   3.131 seconds
+8001
+Time taken for tests:   3.188 seconds
+8001
+Time taken for tests:   3.272 seconds
+8001
+Time taken for tests:   2.892 seconds
+8001
+Time taken for tests:   4.544 seconds
+mean 3.4074
+median 3.253
+16001
+Time taken for tests:   4.286 seconds
+16001
+Time taken for tests:   4.256 seconds
+16001
+Time taken for tests:   3.996 seconds
+16001
+Time taken for tests:   4.434 seconds
+16001
+Time taken for tests:   4.285 seconds
+16001
+Time taken for tests:   4.443 seconds
+16001
+Time taken for tests:   4.308 seconds
+16001
+Time taken for tests:   4.500 seconds
+16001
+Time taken for tests:   4.260 seconds
+16001
+Time taken for tests:   4.468 seconds
+mean 4.323600000000001
+median 4.308
+32001
+Time taken for tests:   6.743 seconds
+32001
+Time taken for tests:   6.757 seconds
+32001
+Time taken for tests:   7.432 seconds
+32001
+Time taken for tests:   6.697 seconds
+32001
+Time taken for tests:   6.604 seconds
+32001
+Time taken for tests:   6.687 seconds
+32001
+Time taken for tests:   6.717 seconds
+32001
+Time taken for tests:   6.602 seconds
+32001
+Time taken for tests:   6.575 seconds
+32001
+Time taken for tests:   6.963 seconds
+mean 6.7777
+median 6.717
+64001
+Time taken for tests:   11.188 seconds
+64001
+Time taken for tests:   15.607 seconds
+64001
+Time taken for tests:   11.100 seconds
+64001
+Time taken for tests:   12.145 seconds
+64001
+Time taken for tests:   11.481 seconds
+64001
+Time taken for tests:   10.884 seconds
+64001
+Time taken for tests:   10.418 seconds
+64001
+Time taken for tests:   10.828 seconds
+64001
+Time taken for tests:   10.735 seconds
+64001
+Time taken for tests:   10.778 seconds
+mean 11.516399999999999
+median 11.1
+128001
+Time taken for tests:   20.744 seconds
+128001
+Time taken for tests:   19.029 seconds
+128001
+Time taken for tests:   19.539 seconds
+128001
+Time taken for tests:   19.444 seconds
+128001
+Time taken for tests:   19.656 seconds
+128001
+Time taken for tests:   19.522 seconds
+128001
+Time taken for tests:   19.824 seconds
+128001
+Time taken for tests:   19.582 seconds
+128001
+Time taken for tests:   19.989 seconds
+mean 19.703222222222223
+median 19.656

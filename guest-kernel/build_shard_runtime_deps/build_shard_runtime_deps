@@ -1,0 +1,30 @@
+cp ${1} vmlinux && 
+python analyze-vmlinux.py vmlinux &&
+
+python over_write_kernel.py vmlinux ${SHARD_PATH}/guest-kernel/instrumentation/shadowstack/ss_funcs ${2} &&
+python get_sc_dep_frames.py vmlinux ${SHARD_PATH}/guest-kernel/kernel-bitcode/bitcode-build-full-link/kernel-linked-bcs.o-instrumented.bc ${2}
+python parse_cg_new.py ${SHARD_PATH}/guest-kernel/callgraph/linux_call_graph_sig ${SHARD_PATH}/guest-kernel/callgraph/linux_call_graph_fcfg vmlinux
+objdump -d vmlinux &> vmlinux_dumped &&
+objdump -d vmlinux_is &> vmlinux_is_dumped &&
+objdump -d vmlinux_oos &> vmlinux_oos_dumped #&&
+objdump -d vmlinux_ud2 &> vmlinux_ud2_dumped #&&
+
+cp vmlinux ${SHARD_PATH}/guest-kernel/kernel-bitcode/linux-stable/.
+cd ${SHARD_PATH}/guest-kernel/kernel-bitcode/linux-stable
+scripts/sortextable vmlinux 
+nm -n vmlinux | grep -v '\( [aNUw] \)\|\(__crc_\)\|\( \$[adt]\)\|\( .L\)' > System.map
+make bzImage
+cp arch/x86/boot/bzImage ${SHARD_PATH}/guest-kernel/build_shard_runtime_deps/.
+cp vmlinux ${SHARD_PATH}/guest-kernel/build_shard_runtime_deps/.
+cd ${SHARD_PATH}/guest-kernel/build_shard_runtime_deps
+
+python gen_guest_addrs.py vmlinux vmlinux_dumped &> guest_addrs.h
+
+
+cp dt_func_code_original_backup ${SHARD_WORK_DIR}/.
+cp dt_func_code_is_backup ${SHARD_WORK_DIR}/.
+cp dt_func_code_ud2_backup ${SHARD_WORK_DIR}/.
+cp dt_cfg ${SHARD_WORK_DIR}/.
+cp sc_info ${SHARD_WORK_DIR}/.
+cp guest_addrs.h ${SHARD_WORK_DIR}/.
+cp bzImage ${SHARD_WORK_DIR}/.

@@ -1,0 +1,57 @@
+## Callgraph for Linux Kernel
+
+The callgraph is required for enforcing control-flow integrity (CFI)
+and other general SHARD code classification.
+
+copy the bitcode file generated in kernel-bitcode here
+cp ${SHARD_PATH}/guest-kernel/kernel-bitcode/bitcode-build-full-link/kernel-linked-bcs.o.bc .
+
+run ./create_call_graphs.sh
+
+We first use two algorithms in ${SHARD_PATH}/fine-cfg to resolve indirect callsite targets
+	
+	- Struct-Field sensitive algorithm: This algorithm matches indirect callsites that load their function pointers from fields inside structures to functions that are stored to those fields of those structures:
+		e.g.
+		struct St {
+			funcptr fptr;
+		}
+
+		struct St obj1;
+		obj1.fptr = func;
+		..
+
+
+		str St obj2;
+		..
+		obj2.fptr();
+
+	func is a valid target for the indirect callsite.
+
+	- Signature matching algorithm: This algorithm matches indirect callsites with a certain signature to all functions that have the same signature.
+
+	e.g.
+
+	void func1(int a, int b) {
+
+	}
+
+	void func2(int a) {
+
+	}
+
+	..
+	func_ptr fptr;
+	..
+
+	int a;
+	*fptr(a);
+
+	func2 is a valid target for the above callsite but func1 is not.
+
+	Struct-Field sensitive algorithm is more precise but only works for call sites that load their function pointer from a struct in a field. We use both these algorithms and for each call site we take the minimum of the two.
+
+	** Note - Their may be some instances where the analysis is incomplete but I don't know why.
+
+
+Finally, we will create a callsites_info file containing targets for all indirect callsites.
+This is needed to add cfi protection + generate a static call graph that is passed to the run-time stage

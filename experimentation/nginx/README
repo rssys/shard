@@ -1,0 +1,19 @@
+Make sure the guest kernel is running using the appropriate nginx command in ${SHARD_PATH}/shard_monitor/qemu/run_qemu
+
+Everything below has to be done on the guest :
+
+	install the appropriate nginx version on the guest machine
+	Disable nginx from running at start-up
+		sudo service disable nginx
+	mkdir nginx
+	{Copy contents of server to nginx directory}
+	Create files of size 2kb - 128kb in nginx/root on the guest
+	copy server/default to /etc/nginx/sites-enabled/default on the guests
+
+	Now run nginx by bash nginx/run_nginx
+
+
+Now nginx is running on guest. Everything below has to be done on host:
+	./run_all_tests.sh
+
+	This will run the client/ab_script 10 times for each file size and report the median

@@ -1,0 +1,13 @@
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+
+cd linux-stable
+git checkout v4.15.0
+
+cp ../*.c arch/x86/kvm/.
+cp ../*.h arch/x86/kvm/.
+
+make -j $(nproc)
+
+sudo make -j $(nproc) modules_install
+
+sudo make install

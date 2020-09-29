@@ -1,0 +1,6 @@
+sudo modprobe -r kvm_intel
+sudo modprobe -r kvm
+make modules SUBDIRS=arch/x86/kvm
+sudo make modules_install SUBDIRS=arch/x86/kvm
+sudo modprobe kvm
+sudo modprobe kvm_intel
