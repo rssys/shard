@@ -82,8 +82,8 @@ def write_script(excluded_paths, depth, base_dir):
                 llvm_log=open("./wrapper-logs/wrapper.log","r")
                 assembly_objects=[]
                 for line in llvm_log.readlines():
-                    if len(line)>=54 and line[:54]=="WARNING:Error reading the .llvm_bc section of ELF file":
-                        assembly_objects.append(line[55:-2])
+                    if len(line)>=53 and line[:53]=="ERROR:Error reading the .llvm_bc section of ELF file ":
+                        assembly_objects.append(line[53:-2])
                 llvm_log.close()
 
                 # Deal with those files
@@ -180,8 +180,8 @@ subprocess.call(["touch","./wrapper-logs/wrapper.log"])
 llvm_log=open("./wrapper-logs/wrapper.log","r")
 assembly_objects=[]
 for line in llvm_log.readlines():
-    if len(line)>=55 and line[:54]=="WARNING:Error reading the .llvm_bc section of ELF file":
-        assembly_objects.append(line[55:-2])
+    if len(line)>=53 and line[:53]=="ERROR:Error reading the .llvm_bc section of ELF file ":
+        assembly_objects.append(line[53:-2])
 for asf in assembly_objects:
     out.writelines("cp "+ asf + " $build_home/arch/x86/lib/objects/ \n")
     filename= asf.split('/')[-1]
