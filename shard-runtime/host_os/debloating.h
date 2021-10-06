@@ -52,17 +52,11 @@
 #include "timing.h"
 #include "printing.h"
 #include "fileio.h"
-#include SHARD_WORK_DIR "guest_addrs.h"
+#include "guest_addrs.h"
 #include "numbers.h"
 #include "lbr.h"
 #include  "syscallinfo.h"
 #include "shard_work_dir.h"
-
-#define dt_fpath_is SHARD_WORK_DIR "dt_func_info_is"
-#define dt_fpath_qemu_addrs SHARD_WORK_DIR "qemu_addrs"
-#define dt_fpath_kvm_log SHARD_WORK_DIR "kvm_log"
-#define dt_fpath_frame_info SHARD_WORK_DIR "sc_info"
-#define dt_fpath_cfg SHARD_WORK_DIR "dt_cfg"
 
 #define text_section_offset 0xffffffff81000000
 #define text_section_size 0x800000
@@ -74,6 +68,33 @@ char ud2_buffer[] = {0xf,0xb};
 char nop_buffer[1] = {0x90};
 struct file * fd_log = NULL;
 
+char dt_fpath_is[250];
+char dt_fpath_qemu_addrs[250];
+char dt_fpath_kvm_log[250];
+char dt_fpath_frame_info[250];
+char dt_fpath_cfg[250];
+
+/* guest kernel function information */
+void initialize_kernel_path(char * path_arr, char * fname) {
+    int len1 = strlen(SHARD_WORK_DIR);
+    int len2 = strlen(fname);
+    dt_printk("%d %s %d %s\n", len1, SHARD_WORK_DIR, len2, fname);
+
+    memcpy(path_arr, SHARD_WORK_DIR, len1);
+    path_arr[len1] = '/';
+    memcpy(&path_arr[len1 + 1], fname, len2);
+    path_arr[len1 + 1 + len2] = '\0';
+    dt_printk("%s\n", path_arr);
+}
+
+void initialize_kernel_paths(void) {
+    dt_printk("called initialize kernel paths\n");
+    initialize_kernel_path(dt_fpath_is, "dt_func_info_is");
+    initialize_kernel_path(dt_fpath_qemu_addrs, "qemu_addrs");
+    initialize_kernel_path(dt_fpath_kvm_log, "kvm_log");
+    initialize_kernel_path(dt_fpath_frame_info, "sc_info");
+    initialize_kernel_path(dt_fpath_cfg, "dt_cfg");
+}
 /* guest kernel function information */
 
 #define MAX_GUEST_FUNCS 25000
@@ -117,7 +138,7 @@ int curr_pid;
 int tracking_enabled = false;
 
 char * tracked_proc_list[] = {
-	"runspec\0",
+    "runspec\0",
     // "hmmer_base.ia64\0",
     // "bzip2_base.ia64\0"
     // "mcf_base.ia64\0",
@@ -150,8 +171,8 @@ unsigned long ss_text_addr, oos_text_addr, original_text_addr, ud2_text_addr;
 after booting we need to update relevant code in ss and ud2 kernels.
 */
 struct code_loc {
-	unsigned long address;
-	int size;
+    unsigned long address;
+    int size;
 };
 
 struct code_loc changes_between_contexts[100000];
@@ -163,7 +184,7 @@ bool first_time_ctx_handling = true;
 struct SyscallInfo syscall_info[num_sys_calls];
 
 /* 
-	current system call executing on the guest - only relevant if the current guest process is tracked 
+    current system call executing on the guest - only relevant if the current guest process is tracked 
 */
 int syscall_id = 0;
 
@@ -229,7 +250,7 @@ unsigned long get_transfer_from(unsigned long to) {
 }
 
 void set_curr_proc_name(struct kvm_vcpu * vcpu) {
-	if(is_timing) return;
+    if(is_timing) return;
     copy_from_user(curr_proc_name, (void *) dt_get_hva(vcpu, curr_proc_name_addr), 100);
     if(!strncmp("ab", curr_proc_name, strlen("ab"))) {
         start_timing();
@@ -367,6 +388,17 @@ struct func_node * dt_parse_token(struct file * fd) {
     return dt_init_func_node(name, address, code_size);
 }
 
+bool is_white_listed(char * name) {
+    int i;
+    #define num 7
+    char white_list[num][100] = {"rcu_bh_qs\0", "grab_cache_page_write_begin\0", "rcu_sched_qs\0", "ptep_clear_flush\0", "sg_free_table_chained\0", "anon_vma_ctor\0", "scsi_put_command\0"};
+    for(i = 0; i < num; i++) {
+        if(!strcmp(name, white_list[i]))
+            return true;
+    }
+    return false;
+}
+
 int dt_load_mem(struct kvm_vcpu * vcpu, char * fname, struct func_node ** fn_array) {
     struct file * fd;
     struct func_node * fn;
@@ -385,7 +417,9 @@ int dt_load_mem(struct kvm_vcpu * vcpu, char * fname, struct func_node ** fn_arr
             dt_printk("--------------------------------> size is greater than MAX_GUEST_FUNCS\n");
             return fn_array_size;
         }
-
+        if(is_white_listed(fn->name)) {
+            continue;
+        }
         fn_array[fn_array_size] = fn;
         fn_array_size++;
         changes_between_contexts[num_changes_between_contexts].address = fn->address;
@@ -518,7 +552,7 @@ void dt_change_scope(struct kvm_vcpu * vcpu, int kernel_state, int context) {
     // if(changed_scope_once) return;
     // changed_scope_once = true;
     #endif
-
+    write_to_log_sprintf(fd_log, "Changing Scope\n");
     if(!dt_change_pfns_2(vcpu, kernel_state, context)) { // false means same state
         write_to_log_sprintf(fd_log, "same state\n");
         return;
@@ -527,27 +561,36 @@ void dt_change_scope(struct kvm_vcpu * vcpu, int kernel_state, int context) {
     END_TIMER(usa_time);
     #endif
     if(in_ctx) {
-	    num_ctx_changes_in_scope++;
+        num_ctx_changes_in_scope++;
     } else if(in_sc) {
-	    num_sc_changes_in_scope++;
+        num_sc_changes_in_scope++;
     }
     write_to_log_sprintf(fd_log, "changed state to %d kernel_state, %d context\n", kernel_state, context);
 }
+
+bool testing = false;
 
 void ts_write(unsigned long address, int state, char * buffer, int size) {
     unsigned long frame_addr;
     int copy_size;
     int offset_in_page;
+    if(testing) {
+        write_to_log_sprintf(fd_log, "testing %x %x\n", buffer[0], buffer[1]);
+    }
     if(FRAME(address) < 0 || FRAME(address) >= num_ts_frames) return;
     while(size > 0) {
         offset_in_page = address & (~PAGE_MASK);
         frame_addr = dt_get_frame(state, FRAME(address));
         copy_size = min((int) (PAGE_SIZE - offset_in_page), size);
+        if(testing) {
+            write_to_log_sprintf(fd_log, "%lx %d %lx\n", address, offset_in_page, frame_addr);
+        }
         memcpy((char *) frame_addr + offset_in_page, buffer, copy_size);
         size -= copy_size;
         address += copy_size;
         buffer += copy_size;
     } 
+    testing = false;
 }
 
 void ts_read(unsigned long address, int state, char * buffer, int size) {
@@ -586,12 +629,26 @@ void ud2_to_nop(struct kvm_vcpu * vcpu, unsigned long addr, int state) {
     }
 }
 
+int print_status(struct kvm_vcpu * vcpu, unsigned long addr, int state) {
+    char buf[2];
+    if(addr >= text_section_offset  && addr < text_section_offset + text_section_size) {
+        ts_read(addr, state, buf, 2);
+    }
+    if(addr >= text_section_offset || state == ORIGINAL) {
+        copy_from_user(buf, (char *) dt_get_hva(vcpu, addr), 2);
+    }
+    if(buf[0] == ud2_buffer[0] && buf[1] == ud2_buffer[1]) return 0;
+    if(buf[0] == nop_buffer[0] && buf[1] == nop_buffer[0]) return 1;
+    return 2;
+}
+
 /* Start  logging guest.
 Overwrite nop bytes of log_fn with ud2
 Start tracking irq_enter and irq_exit
 */
 void start_logging(struct kvm_vcpu * vcpu, int state) {
     int awt = 1;
+    write_to_log_sprintf(fd_log, "start_logging\n");
     nop_to_ud2(vcpu, log_fn_addr, state);
     nop_to_ud2(vcpu, log_irq_enter_addr, state);
     nop_to_ud2(vcpu, log_irq_exit_addr, state);
@@ -605,6 +662,7 @@ Stop tracking irq_enter and irq_exit
 */
 void stop_logging(struct kvm_vcpu * vcpu, int state) {
     int awt = 0;
+    write_to_log_sprintf(fd_log, "stop_logging\n");
     ud2_to_nop(vcpu, log_fn_addr, state);
     ud2_to_nop(vcpu, log_irq_enter_addr, state);
     ud2_to_nop(vcpu, log_irq_exit_addr, state);
@@ -648,14 +706,14 @@ void handle_first_time_ctx_handling(struct kvm_vcpu * vcpu) {
         copy_to_user((char *) ss_text_addr + frame_offset, buffer, PAGE_SIZE);
         copy_to_user((char *) ud2_text_addr + frame_offset, buffer, PAGE_SIZE);
         while(true) {
-        	curr = changes_between_contexts[curr_idx];
-        	if(lies_in_frame(text_section_offset + frame_offset, curr.address, curr.size, &start, &end)) {
+            curr = changes_between_contexts[curr_idx];
+            if(lies_in_frame(text_section_offset + frame_offset, curr.address, curr.size, &start, &end)) {
                 undo_copy_offset = frame_offset + start;
- 				undo_copy_size = end - start;
- 				copy_to_user((char *) ss_text_addr + undo_copy_offset, old_buffer1 + start, undo_copy_size);
- 				copy_to_user((char *) ud2_text_addr + undo_copy_offset, old_buffer2 + start, undo_copy_size);
+                undo_copy_size = end - start;
+                copy_to_user((char *) ss_text_addr + undo_copy_offset, old_buffer1 + start, undo_copy_size);
+                copy_to_user((char *) ud2_text_addr + undo_copy_offset, old_buffer2 + start, undo_copy_size);
                 // dt_printk("undo copy at address %lx, size %d", text_section_offset + frame_offset + start, undo_copy_size);
- 			}
+            }
             
             if(finishes_in_or_before_frame(text_section_offset + frame_offset, curr.address, curr.size)) {
                 curr_idx++;
@@ -772,9 +830,9 @@ struct proc_info * get_or_create_proc_info(int pid) {
 
 bool dt_handle_switch_ctx(struct kvm_vcpu * vcpu, unsigned long instp) {
     struct proc_info * pi;
-	#ifdef TIME_IT
-	START_TIMER();
-	#endif
+    #ifdef TIME_IT
+    START_TIMER();
+    #endif
 
     /* Check if the current UD2 exit is caused by a context switch on guest */
     if(instp == switch_context_ud2_addr) {
@@ -792,6 +850,7 @@ bool dt_handle_switch_ctx(struct kvm_vcpu * vcpu, unsigned long instp) {
         set_curr_proc_info(vcpu); 
        /* if tracking_enabled is true context switch to tracked process */
         /* if tracking_enabled is false context switch from tracked process */
+        write_to_log_sprintf(fd_log, "switch_context_ud2_addr %d\n", tracking_enabled);
         if(tracking_enabled) {
             write_to_log_sprintf(fd_log, "context switch -> %s %d %d\n", curr_proc_name, curr_pid, tracking_enabled);
             pi = get_or_create_proc_info(curr_pid);
@@ -815,9 +874,8 @@ bool dt_handle_switch_ctx(struct kvm_vcpu * vcpu, unsigned long instp) {
                 in_ctx = false;
                 #endif
             }
-            // write_to_log_sprintf(fd_log, "Context Switch %d : next_state %d\n", curr_pid, pi->curr_state);
+            write_to_log_sprintf(fd_log, "Context Switch %d : next_state %d\n", curr_pid, pi->curr_state);
             if(pi->curr_state != ORIGINAL) {
-
                 /* If profiling, enable logging of guest kernel functions */
                 #ifdef PROFILING
                 start_logging(vcpu, ORIGINAL);
@@ -831,7 +889,7 @@ bool dt_handle_switch_ctx(struct kvm_vcpu * vcpu, unsigned long instp) {
             dt_change_scope(vcpu, ORIGINAL, -1);
             in_ctx = false;
             #endif
-            // write_to_log_sprintf(fd_log, "Context Switch %d : next_state %d\n", curr_pid, ORIGINAL);
+            write_to_log_sprintf(fd_log, "Context Switch %d : next_state %d\n", curr_pid, ORIGINAL);
             
             /* If profiling, disable logging of guest kernel functions  */
             #ifdef PROFILING
@@ -841,9 +899,9 @@ bool dt_handle_switch_ctx(struct kvm_vcpu * vcpu, unsigned long instp) {
     } else {
         return false;
     }
-	#ifdef TIME_IT
-	END_TIMER(switch_ctx_time);
-	#endif
+    #ifdef TIME_IT
+    END_TIMER(switch_ctx_time);
+    #endif
     kvm_register_write(vcpu, VCPU_REGS_RIP, instp + 2);
     num_switch_ctx_insts++;
     return true;
@@ -926,10 +984,10 @@ bool check_logged(int sc_id, char * fname) {
 bool of_interest = false;
 void print_pfault_info(struct kvm_vcpu * vcpu) {
     #ifndef DISABLE_LOGGING
-	unsigned long  code = kvm_register_read(vcpu, VCPU_REGS_R15);
-	unsigned long  address = kvm_register_read(vcpu, VCPU_REGS_R12);
-	write_to_log_sprintf(fd_log, "code is %ld, address is %lx\n", code, address);
-	write_to_log_sprintf(fd_log, "protection bit = %ld\n", code & X86_PF_PROT);
+    unsigned long  code = kvm_register_read(vcpu, VCPU_REGS_R15);
+    unsigned long  address = kvm_register_read(vcpu, VCPU_REGS_R12);
+    write_to_log_sprintf(fd_log, "code is %ld, address is %lx\n", code, address);
+    write_to_log_sprintf(fd_log, "protection bit = %ld\n", code & X86_PF_PROT);
     #endif
     if(of_interest) {
         print_lbr();
@@ -969,9 +1027,10 @@ void dt_handle_logging(struct kvm_vcpu * vcpu) {
     else if(in_exc) id = -2;
     else id = sc_id;
     get_curr_fn_name(vcpu, curr_fn_name);
-    write_to_log_sprintf(fd_log, "func is %s id is %d\n", curr_fn_name, id);
-    // if(!strcmp(curr_fn_name, "__do_page_fault"))
-    // 	print_pfault_info(vcpu);
+    write_to_log_sprintf(fd_log, "func is %s id is %d status is %d\n", curr_fn_name, id, print_status(vcpu, log_irq_enter_addr, ORIGINAL));
+    // if(!strcmp(curr_fn_name, "irq_enter")) {
+    //     nop_to_ud2();
+    // }
     #ifdef LARGE_FILE
     init_syscall_funcs();
     if(check_logged(sc_id, curr_fn_name)) return;
@@ -981,22 +1040,22 @@ void dt_handle_logging(struct kvm_vcpu * vcpu) {
 }
 
 void print_do_fork(struct kvm_vcpu * vcpu) {
-	bool my_variable_to_update = 0;
+    bool my_variable_to_update = 0;
     copy_from_user(&my_variable_to_update, (void *) dt_get_hva(vcpu, 0xffffffff86af97b0 + 5000), 1);
     dt_printk("value of interest is %d %s\n", my_variable_to_update, curr_proc_name);
     write_to_log_sprintf(fd_log, "value of interest is %d %s\n", my_variable_to_update, curr_proc_name);
 }
 
 // void handle_do_fork(struct kvm_vcpu * vcpu) {
-// 	set_curr_proc_name(vcpu);
+//  set_curr_proc_name(vcpu);
 //     copy_to_user((void *) dt_get_hva(vcpu, do_fork_addr), nop_buffer, 1);
 //     copy_to_user((void *) dt_get_hva(vcpu, do_fork_addr + 1), nop_buffer, 1);
-// 	if(!strcmp(curr_proc_name, "exploit")) {
-// 		print_do_fork(vcpu);
-// 	    kvm_register_write(vcpu, VCPU_REGS_RIP, do_fork_addr + 2);
-// 	} else  {
+//  if(!strcmp(curr_proc_name, "exploit")) {
+//      print_do_fork(vcpu);
+//      kvm_register_write(vcpu, VCPU_REGS_RIP, do_fork_addr + 2);
+//  } else  {
 //         // kvm_register_write(vcpu, VCPU_REGS_RIP, 0xffffffff8126f62b);
-// 	}
+//  }
 // }
 
 // void handle_st2(struct kvm_vcpu * vcpu) {
@@ -1006,12 +1065,12 @@ void print_do_fork(struct kvm_vcpu * vcpu) {
 
 
 // void handle_jsk(struct kvm_vcpu * vcpu, unsigned long instp) {
-// 	set_curr_proc_name(vcpu);
-// 	if(!strcmp(curr_proc_name, "exploit")) {
-// 	    kvm_register_write(vcpu, VCPU_REGS_RIP, instp + 2);
-// 	} /*else  {
-// 	    kvm_register_write(vcpu, VCPU_REGS_RIP, 0xffffffff8125305b);
-// 	}
+//  set_curr_proc_name(vcpu);
+//  if(!strcmp(curr_proc_name, "exploit")) {
+//      kvm_register_write(vcpu, VCPU_REGS_RIP, instp + 2);
+//  } /*else  {
+//      kvm_register_write(vcpu, VCPU_REGS_RIP, 0xffffffff8125305b);
+//  }
 // }
 
 bool dt_handle_sc(struct kvm_vcpu * vcpu, unsigned long instp) {
@@ -1047,7 +1106,7 @@ bool dt_handle_sc(struct kvm_vcpu * vcpu, unsigned long instp) {
 
         write_to_log_sprintf(fd_log, "entering system call %d for proc %d\n", sc_id, curr_pid);
         if(sc_id == 247) {
-        	print_do_fork(vcpu);
+            print_do_fork(vcpu);
         }
 
         #ifndef PROFILING
@@ -1074,7 +1133,7 @@ bool dt_handle_sc(struct kvm_vcpu * vcpu, unsigned long instp) {
         
         write_to_log_sprintf(fd_log, "exiting system call %d\n", sc_id);
         if(sc_id == 247) {
-        	print_do_fork(vcpu);
+            print_do_fork(vcpu);
         }
         #ifndef PROFILING
         dt_change_scope(vcpu, pi->curr_state, pi->curr_context);
@@ -1172,6 +1231,7 @@ bool dt_handle_ss_funcs(struct kvm_vcpu * vcpu, unsigned long instp, unsigned lo
     struct func_node * fn;
     unsigned long called_from, actual_stack_addr, shadow_stack_value, addr_to_write;
     struct proc_info * pi = get_or_create_proc_info(curr_pid);
+
     if(instp == pi->ret_addr && pi->is_hardened) {
         pi->is_hardened = false;
         dt_change_scope(vcpu, pi->curr_state, pi->curr_context);
@@ -1232,12 +1292,40 @@ void dt_handle_illegal_transfer(struct kvm_vcpu * vcpu, unsigned long instp, uns
     kvm_register_write(vcpu, VCPU_REGS_RSP, stack_addr + 8);
 }
 
+#define threshold 100
+int num_r = 0;
+int r_nums[10000];
+char * r_names[10000];
+
+void print_should_bring_to_memory(void) {
+    int i;
+    for(i = 0; i < num_r; i++) {
+        if(r_nums[i] > threshold) {
+            dt_printk("should bring to memory: %s %d\n", r_names[i], r_nums[i]);
+        }
+    }
+}
+
+void set_recovered(char * name) {
+    int i;
+    for(i = 0; i < num_r; i++) {
+        if(!strcmp(r_names[i], name)) {
+            r_nums[i] += 1;
+            return;
+        }
+    }
+    r_names[num_r] = name;
+    r_nums[num_r] = 1;
+    num_r += 1;
+}
+
 // uint64_t undefined_time = 0;
 bool dt_handle_unexplored(struct kvm_vcpu * vcpu, unsigned long instp, unsigned long stack_addr) {
     char buffer[10000];
     struct proc_info * pi;
-    unsigned long ret_addr, transfer_from;
-    struct func_node * caller;
+    unsigned long ret_addr; 
+    // unsigned long transfer_from;
+    // struct func_node * caller;
     struct func_node * fn = dt_get_fnode(instp, fn_array, 0, fn_array_size);
     if(!fn) {
         write_to_log_sprintf(fd_log, "not found %lx\n", instp);
@@ -1257,14 +1345,14 @@ bool dt_handle_unexplored(struct kvm_vcpu * vcpu, unsigned long instp, unsigned 
         return true;
     }
     ret_addr = dt_get_stack_addr(vcpu, stack_addr);
-    transfer_from = ret_addr;
-    transfer_from = get_transfer_from(instp);   
+    // transfer_from = ret_addr;
+    // transfer_from = get_transfer_from(instp);   
     // START_TIMER();
-    if(!transfer_from) transfer_from = ret_addr;
-    if(!check_transfer(vcpu, transfer_from, instp)) {
-        caller = dt_get_fnode(transfer_from, fn_array, 0, fn_array_size);
-        write_to_log_sprintf(fd_log, "jump out of the call graph %s -> %s\n", caller->name, fn->name);
-    }
+    // if(!transfer_from) transfer_from = ret_addr;
+    // if(!check_transfer(vcpu, transfer_from, instp)) {
+    //     caller = dt_get_fnode(transfer_from, fn_array, 0, fn_array_size);
+    //     write_to_log_sprintf(fd_log, "jump out of the call graph %s -> %s\n", caller->name, fn->name);
+    // }
     pi = get_or_create_proc_info(curr_pid);
     pi->is_hardened = true;
     pi->ret_addr = ret_addr;
@@ -1272,7 +1360,8 @@ bool dt_handle_unexplored(struct kvm_vcpu * vcpu, unsigned long instp, unsigned 
     dt_change_scope(vcpu, HARDENED, -1);
     #else
     dt_change_scope(vcpu, ORIGINAL, -1);
-	#endif    
+    #endif
+    set_recovered(fn->name);
     write_to_log_sprintf(fd_log, "Recovering function - %s start of function - %lx, instp - %lx\n", fn->name, fn->address, instp);
     num_recovered++;
     // END_TIMER(undefined_time);
@@ -1352,23 +1441,21 @@ bool dt_handle_fcntl(struct kvm_vcpu * vcpu, unsigned long instp, unsigned long 
 //     return true;
 // } 
 
-bool dt_handle_cfi(struct kvm_vcpu * vcpu, unsigned long instp, unsigned long stackp) {
-    // unsigned long curr_fn_ptr;
-    // struct func_node * fn;
+bool dt_handle_cfi(struct kvm_vcpu * vcpu, unsigned long instp, unsigned long stack_addr) {
+    unsigned long curr_fn_ptr, ret_addr;
+    struct func_node * fn1, * fn2;
     if(instp == initialize_addr) {
-        // print_ht_at_id(vcpu, 4780);
+        // nop_to_ud2(vcpu, check_ci_addr, ORIGINAL);
     } else if(instp == check_ci_addr) {
-    	// dt_printk("check_ci : invalid jump encountered Not handled\n");
-    	// dt_printk("*********************************************\n");
-    	// return false;
-        // copy_from_user((void *) &curr_fn_ptr, (void *) dt_get_hva(vcpu, cfi_invalid_addr_addr), 8);
-        // fn = dt_get_fnode(curr_fn_ptr, fn_array, 0, fn_array_size);
-        // if(fn) {
-        //     write_to_log_sprintf(fd_log, "invalid cfi transfer to %s\n", fn->name);
-        // } else {
-        //     write_to_log_sprintf(fd_log, "invalid cfi transfer to unknown address %lx\n", curr_fn_ptr);
-        // }
-        // kvm_register_write(vcpu, VCPU_REGS_RIP, instp + 2);
+        ret_addr = dt_get_stack_addr(vcpu, stack_addr);
+        fn1 = dt_get_fnode(ret_addr, fn_array, 0, fn_array_size);
+        copy_from_user((void *) &curr_fn_ptr, (void *) dt_get_hva(vcpu, cfi_invalid_addr), 8);
+        fn2 = dt_get_fnode(curr_fn_ptr, fn_array, 0, fn_array_size);
+        if(fn1 && fn2) {
+            write_to_log_sprintf(fd_log, "invalid cfi transfer from %s to %s\n", fn1->name, fn2->name);
+        } else {
+            write_to_log_sprintf(fd_log, "invalid cfi transfer to unknown address %lx %lx\n", ret_addr, curr_fn_ptr);
+        }
     } else {
         return false;
     }
@@ -1415,14 +1502,16 @@ bool dt_handle_exception(struct kvm_vcpu * vcpu, unsigned long instp, unsigned l
     START_TIMER();
     #endif
 
+    write_to_log_sprintf(fd_log, "instp is %lx\n", instp);
     /* Called when there is a context switch on the guest for the first time. Initialize guest tracked procs */
     if(instp == initialize_addr) {
         dt_printk("handling initialize_addr\n");
         dt_handle_cfi(vcpu, instp, stack_addr);
+        initialize_kernel_paths();
         print_guest_tracked_procs(vcpu);
         set_guest_tracked_procs(vcpu);
         print_guest_tracked_procs(vcpu);
-    	return true;
+        return true;
     }
 
     /* Early hardware exceptions - We do not want to initialize before first context switch exit */
@@ -1441,7 +1530,6 @@ bool dt_handle_exception(struct kvm_vcpu * vcpu, unsigned long instp, unsigned l
     if(!fn_array_size) {
         dt_initialize(vcpu);
     }
-
     HAS_HANDLED = 
     /* Context switch exit */
     dt_handle_switch_ctx(vcpu, instp)
@@ -1460,10 +1548,11 @@ bool dt_handle_exception(struct kvm_vcpu * vcpu, unsigned long instp, unsigned l
     #endif
     /* Unexplored code path */
     || dt_handle_unexplored(vcpu, instp, stack_addr);
-
+    write_to_log_sprintf(fd_log, "HAS_HANDLED is %d\n", HAS_HANDLED);
     if(HAS_HANDLED) {
         num_handled++;
         if(num_handled % 10000 == 0) {
+            print_should_bring_to_memory();        
             print_numbers();
         }
         #ifdef TIME_IT

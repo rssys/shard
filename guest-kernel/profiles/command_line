@@ -1,0 +1,1 @@
+python parse_kvm_log.py ${SHARD_PATH}/guest-kernel/kernel-bitcode/bitcode-build-full-link/kernel-linked-bcs.o-instrumented.bc  {PROFILE NAME} {NEW NAME TO SET}

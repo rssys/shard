@@ -3,7 +3,7 @@
 #define FILE_IO 1
 
 // #define TIME_IT 1
-#define DISABLE_LOGGING 1
+// #define DISABLE_LOGGING 1
 #define DISABLE_SS_LOGGING 1
 
 // #define APPLICATION_SPECIALIZATION 1

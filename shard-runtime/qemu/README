@@ -1,7 +1,6 @@
-copy these files to QEMU_SOURCE_DIRECTORY/accel/kvm
-update shard_work_dir.h to set the shard working directory path
-
-build QEMU
+Build Qemu by using build_qemu.sh
+	copy all *.cpp and *.h files to qemu/accel/kvm
+	build QEMU
 
 To run : 
 	copy run_qemu to QEMU_BUILD_DIR/x86_64-softmmu and choose the application that you want to run (NGINX or REDIS) by uncommenting the corresponding command line

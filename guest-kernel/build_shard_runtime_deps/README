@@ -12,6 +12,7 @@ These include
 	guest_addrs.h - These are guest kernel addresses needed by SHARD at run-time
 
 ./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/protected-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 
+./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/profiling-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 
 
 Arguments - What vmlinux file to use (e.g. protected-kernel, profiling-kernel etc)
 			What profile to use

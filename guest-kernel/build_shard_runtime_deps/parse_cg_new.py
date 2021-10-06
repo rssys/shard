@@ -175,6 +175,9 @@ for func in fc_sig:
 	nodes[func_addr] = set()
 	calls_sig = fc_sig[func]
 	calls_fcfg = fc_fcfg[func]
+	if func == "fixup_exception":
+		print calls_sig
+		print calls_fcfg
 	if len(calls_sig) != len(calls_fcfg):
 		print "ERROR :", len(calls_sig), len(calls_fcfg)
 	for idx, call in enumerate(calls_fcfg):

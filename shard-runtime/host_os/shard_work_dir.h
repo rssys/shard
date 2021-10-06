@@ -1,1 +1,1 @@
-#define SHARD_WORK_DIR /home/muhammad/testing/debloating/
+#define SHARD_WORK_DIR "/home/muhammad/shard_work_dir"

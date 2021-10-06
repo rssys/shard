@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd linux-stable
-git checkout v4.14.34
 cp ../process_64.c arch/x86/kernel/process_64.c
 
 # # Using the 4.14 version of the kernel. Versions up to 4.16 should work, but 4.17 does not

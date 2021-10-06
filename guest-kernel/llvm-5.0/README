@@ -1,5 +1,5 @@
 Run build_custom_llvm.sh
 
-lib/Transforms/Utils/InlineFunction.cpp 
-and 
-lib/Transforms/Scalar/TailRecursionElimination.cpp are the only files changed
+Two files have been modified to support SHARD:
+	lib/Transforms/Utils/InlineFunction.cpp 
+	lib/Transforms/Scalar/TailRecursionElimination.cpp

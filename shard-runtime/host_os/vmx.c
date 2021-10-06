@@ -5952,11 +5952,12 @@ static int handle_exception(struct kvm_vcpu *vcpu)
 		// 	handle_do_fork(vcpu);
 		// 	return 1;
 		// }
-		if(first_time_log_irq_enter && instp == log_irq_enter_addr) {
-			stop_logging(vcpu, ORIGINAL);
-			first_time_log_irq_enter = false;
-			return 1;
-		}
+		// if(first_time_log_irq_enter && instp == log_irq_enter_addr) {
+		// 	write_to_log_sprintf("first_time_log_irq_enter\n");
+		// 	stop_logging(vcpu, ORIGINAL);
+		// 	first_time_log_irq_enter = false;
+		// 	return 1;
+		// }
 
 		/* SHARD : entry point for SHARD */
 	 	if(dt_handle_exception(vcpu, instp, vmcs_readl(GUEST_RSP))) {

@@ -286,19 +286,34 @@ bool initialized = false;
 #define text_section_offset 0xf00000
 #define text_section_size   0x800000//0x5dd000/*0x9a1000*/ /*0x3d1000*/
 
+char * append_to_path(char * path_arr, const char * fname);
 void dt_initialize(struct kvm_userspace_memory_region mem);
 void mmap_texts(char * ram, uint64_t size);
 
 int fd_is, fd_oos, fd_original, fd_ud2;
 uint64_t is_addr, oos_addr, original_addr, ud2_addr;
 
+/* guest kernel function information */
+char * append_to_path(char * path_arr, const char * fname) {
+    int len1 = strlen(SHARD_WORK_DIR);
+    int len2 = strlen(fname);
+
+    memcpy(path_arr, SHARD_WORK_DIR, len1);
+    path_arr[len1] = '/';
+    memcpy(&path_arr[len1 + 1], fname, len2);
+    path_arr[len1 + 1 + len2] = '\0';
+    printf("%s\n", path_arr);
+    return path_arr;
+}
+
 void mmap_texts(char * ram, uint64_t size) {
     char * ram_is, * ram_oos, * ram_ud2;
+    char path[250];
 
-    int fd1 = open(SHARD_WORK_DIR"dt_func_code_original", O_RDWR, 0);
-    int fd2 = open(SHARD_WORK_DIR"dt_func_code_is", O_RDWR, 0);
-    int fd3 = open(SHARD_WORK_DIR"dt_func_code_oos", O_RDWR, 0);
-    int fd4 = open(SHARD_WORK_DIR"dt_func_code_ud2", O_RDWR, 0);
+    int fd1 = open(append_to_path(path, "dt_func_code_original"), O_RDWR, 0);
+    int fd2 = open(append_to_path(path, "dt_func_code_is"), O_RDWR, 0);
+    int fd3 = open(append_to_path(path, "dt_func_code_oos"), O_RDWR, 0);
+    int fd4 = open(append_to_path(path, "dt_func_code_ud2"), O_RDWR, 0);
 
 
     ram_is = mmap(NULL, text_section_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd2, 0);
@@ -322,7 +337,7 @@ void mmap_texts(char * ram, uint64_t size) {
     fd_oos = fd3;
     fd_ud2 = fd4;
 
-    FILE * f = fopen(SHARD_WORK_DIR"kvm_log", "w");
+    FILE * f = fopen(append_to_path(path, "kvm_log"), "w");
     fprintf(f, "original_addr : %lx\n", original_addr);
     fprintf(f, "is_addr : %lx\n", is_addr);
     fprintf(f, "oos_addr : %lx\n", oos_addr);
@@ -331,8 +346,9 @@ void mmap_texts(char * ram, uint64_t size) {
 }
 
 void dt_initialize(struct kvm_userspace_memory_region mem) {
+    char path[250];
     mmap_texts((char *) mem.userspace_addr, mem.memory_size);
-    int fd = open(SHARD_WORK_DIR"qemu_addrs", O_RDWR | O_CREAT, 0);
+    int fd = open(append_to_path(path, "qemu_addrs"), O_RDWR | O_CREAT, 0);
     printf("------------------------------------------------------------\n");
     printf("------------------------------------------------------------\n");
     printf("------------------------------------------------------------\n");
@@ -348,6 +364,7 @@ void dt_initialize(struct kvm_userspace_memory_region mem) {
     printf("%ld\n", write(fd, (char *) &ud2_addr, 8));
     close(fd);
     initialized = true;
+    exit(0);
 }
 
 static int kvm_set_user_memory_region(KVMMemoryListener *kml, KVMSlot *slot, bool new)

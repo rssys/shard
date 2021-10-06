@@ -8,6 +8,9 @@
 #define OFFSET(addr) (addr & 0xFFF)
 
 extern void * __kmalloc(size_t size, int flags);
+extern int printk(const char *fmt, ...);
+#define KERN_SOH	"\001"		/* ASCII Start Of Header */
+#define KERN_INFO	KERN_SOH "6"
 
 struct CallSite_to_Func {
 	int id;
@@ -40,6 +43,10 @@ void __attribute__((noinline)) initialize_fe(int id, uint64_t frame) {
 void __attribute__((noinline)) add_to_ht(int id, uint64_t func_addr) {
 	uint64_t frame = FRAME(func_addr);
 	uint64_t offset = OFFSET(func_addr);
+	if(id == 289) {
+		printk(KERN_INFO "------------------------------------> Initializing 289: %lx %lx %lx\n", func_addr, frame, offset);
+		printk("**************************************************************");
+	}
 	if(id > num_call_sites) return;
 	if(frame >= num_ts_frames) return;
 	if(!hash_tables[id][frame]) initialize_fe(id, frame);
@@ -68,7 +75,10 @@ void __attribute__((noinline)) check_ci(int id, uint64_t func_addr) {
 	if(frame >= num_ts_frames) return;
 	if(!hash_tables[id][frame] || !hash_tables[id][frame][offset]) {
 		invalid_addr = func_addr;
-		__asm__("NOP\t\n");
-		__asm__("NOP\t\n");
+		__asm__("UD2\t\n");
+		if(id == 289) {
+			printk(KERN_INFO "For 289 %lx %lx %lx\n", func_addr, frame, offset);
+			printk("**************************************************************");
+		}
 	}
 }

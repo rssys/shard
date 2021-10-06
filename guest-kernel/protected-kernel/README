@@ -2,8 +2,8 @@ Build the protected kernel.
 
 Prerequisites - The guest kernel must have been created by using the instructions in "kernel-bitcode"
                 The callgraph must have been created by using the instructions in "callgraph"
-                LLVM directory must be built.
+                llvm-5.0 in guest-kernel/llvm-5.0 must be built.
 
 Command line - ./add_protection.sh 1572864
 
-The only argument is the number of padding bytes to add. The padding must be such that the total size of the text section is aligned with a complete EPT directory entry.
+The only argument is the number of padding bytes to add. The padding must be such that the total size of the text section is aligned with a complete EPT directory entry. Use the default entry if you are using the default setup.

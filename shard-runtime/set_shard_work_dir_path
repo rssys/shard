@@ -1,4 +1,4 @@
-echo "#define SHARD_WORK_DIR ${SHARD_WORK_DIR}" > shard_work_dir.h
+echo "#define SHARD_WORK_DIR \"${SHARD_WORK_DIR}\"" > shard_work_dir.h
 
 cp shard_work_dir.h qemu/.
 cp shard_work_dir.h host_os/.

@@ -173,6 +173,7 @@ write_ts_file(ud2_file, "dt_func_code_ud2_backup")
 with open("dt_func_info_is", 'w') as fd:
 	prev_addr = -1
 	prev_size = -1
+	print "-----------------> len of to_store is", len(to_store)
 	for (func_name, address, code, inst_sizes) in to_store:
 		address = int(address, 16)
 		if prev_addr > -1:

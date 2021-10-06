@@ -23,8 +23,10 @@ python gen_guest_addrs.py vmlinux vmlinux_dumped &> guest_addrs.h
 
 cp dt_func_code_original_backup ${SHARD_WORK_DIR}/.
 cp dt_func_code_is_backup ${SHARD_WORK_DIR}/.
+cp dt_func_code_oos_backup ${SHARD_WORK_DIR}/.
 cp dt_func_code_ud2_backup ${SHARD_WORK_DIR}/.
 cp dt_cfg ${SHARD_WORK_DIR}/.
+cp dt_func_info_is ${SHARD_WORK_DIR}/.
 cp sc_info ${SHARD_WORK_DIR}/.
 cp guest_addrs.h ${SHARD_WORK_DIR}/.
 cp bzImage ${SHARD_WORK_DIR}/.

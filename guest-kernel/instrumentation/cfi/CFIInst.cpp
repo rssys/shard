@@ -49,6 +49,9 @@ namespace {
           }
       	} else {
       		CITargets[curr_ci].insert(line);
+          if(curr_ci == 289) {
+            errs() << line << "\n";
+          }
       	}
       }
     }

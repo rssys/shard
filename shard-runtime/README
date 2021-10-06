@@ -6,6 +6,10 @@ run the script set_shard_work_dir_path
 
 build the host kernel by following instructions in host_os
 
+build qemu by following instructions in qemu
+
 boot into the host kernel
 
-build and run qemu by following instructions in qemu
+boot into the guest machine by using qemu
+
+run application inside the guest machine

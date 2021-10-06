@@ -1,6 +1,9 @@
+cd linux-stable
+cp $SHARD_WORK_DIR/guest_addrs.h arch/x86/kvm/.
 sudo modprobe -r kvm_intel
 sudo modprobe -r kvm
 make modules SUBDIRS=arch/x86/kvm
 sudo make modules_install SUBDIRS=arch/x86/kvm
+sudo cp arch/x86/kvm/*.ko /lib/modules/4.15.0+/kernel/arch/x86/kvm/.
 sudo modprobe kvm
 sudo modprobe kvm_intel

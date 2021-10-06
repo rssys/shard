@@ -1,6 +1,9 @@
 requires gclang
 
-run example_build.sh 
-	- it will clone the kernel 
+run ./build.sh. It will: 
+	- clone the kernel 
 	- build it with gclang 
-	- extract its bitcode and place it in bitcode-build-full-link - kernel-linked-bcs.o.bc
+	- extract its bitcode and place it in bitcode-build-full-link/kernel-linked-bcs.o.bc
+
+The following file has been modified to support run-time SHARD:
+	- arch/x86/kernel/process_64.c
