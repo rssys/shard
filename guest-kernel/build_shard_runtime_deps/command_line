@@ -1,1 +1,3 @@
-./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/protected-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 
+profiling : ./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/profiling-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile
+
+protection: ./build_shard_runtime_deps ${SHARD_PATH}/guest-kernel/protected-kernel/vmlinux ${SHARD_PATH}/guest-kernel/profiles/nginx_profile 
