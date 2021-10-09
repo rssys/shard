@@ -1,8 +1,6 @@
 #!/bin/bash -e
 
 # install essential packages
-
-sudo apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main"
 sudo apt-get update
 sudo apt-get install -y emacs24 dbus-x11 libgmp-dev libelf-dev
 sudo apt-get install -y build-essential vim curl bison flex bc libcap-dev git cmake libboost-all-dev libncurses5-dev python-minimal python-pip unzip 
