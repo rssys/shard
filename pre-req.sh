@@ -2,7 +2,7 @@
 
 # install essential packages
 sudo apt-get update
-sudo apt-get install -y emacs24 dbus-x11 libgmp-dev libelf-dev
+sudo apt-get install -y dbus-x11 libgmp-dev libelf-dev
 sudo apt-get install -y build-essential vim curl bison flex bc libcap-dev git cmake libboost-all-dev libncurses5-dev python-minimal python-pip unzip 
 sudo apt-get install -y git subversion wget libprotobuf-dev python-protobuf protobuf-compiler libboost-all-dev
 sudo apt-get install -y llvm-5.0 libclang-5.0-dev clang-5.0 tree 
