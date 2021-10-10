@@ -1,3 +1,4 @@
+
 cd linux-stable
 cp $SHARD_WORK_DIR/guest_addrs.h arch/x86/kvm/.
 sudo modprobe -r kvm_intel

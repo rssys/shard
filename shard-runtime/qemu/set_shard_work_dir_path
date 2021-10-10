@@ -1,0 +1,1 @@
+echo "#define SHARD_WORK_DIR \"${SHARD_WORK_DIR}\"" > shard_work_dir.h

@@ -1,1 +1,2 @@
-./build_new_kernel
+for building a host kernel from scratch: ./build_new_kernel
+for rebuilding just the KVM modules: ./build_kvm_module
