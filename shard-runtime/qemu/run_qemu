@@ -4,7 +4,7 @@ cp ${SHARD_WORK_DIR}/dt_func_code_oos_backup ${SHARD_WORK_DIR}/dt_func_code_oos
 cp ${SHARD_WORK_DIR}/dt_func_code_ud2_backup ${SHARD_WORK_DIR}/dt_func_code_ud2
 
 BZIMAGE_PATH=${SHARD_WORK_DIR}/bzImage
-HD_PATH=${SHARD_WORK_DIR}/ubuntu18.img
+HD_PATH=${SHARD_WORK_DIR}/${1}
 
 # cd ~/Repositories/kvm/qemu/build/ && make && cd x86_64-softmmu && 
 

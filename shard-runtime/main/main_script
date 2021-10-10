@@ -4,4 +4,4 @@ sudo dmesg -c &&
 cd ../qemu/qemu/build &&
 make &&
 cd x86_64-softmmu/ &&
-./run_qemu
+./run_qemu ${1}
