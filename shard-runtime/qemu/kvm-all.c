@@ -364,7 +364,6 @@ void dt_initialize(struct kvm_userspace_memory_region mem) {
     printf("%ld\n", write(fd, (char *) &ud2_addr, 8));
     close(fd);
     initialized = true;
-    exit(0);
 }
 
 static int kvm_set_user_memory_region(KVMMemoryListener *kml, KVMSlot *slot, bool new)
