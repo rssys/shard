@@ -5,14 +5,13 @@ cp ${SHARD_WORK_DIR}/dt_func_code_ud2_backup ${SHARD_WORK_DIR}/dt_func_code_ud2
 
 BZIMAGE_PATH=${SHARD_WORK_DIR}/bzImage
 HD_PATH=${SHARD_WORK_DIR}/${1}
-
-# cd ~/Repositories/kvm/qemu/build/ && make && cd x86_64-softmmu && 
-
+RAMDISK=${SHARD_WORK_DIR}/ramdisk.img
+ 
 # FOR Nginx
-sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ramdisk.img -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:80
+sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ${RAMDISK} -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:80
 
 # FOR Redis
-# sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ramdisk.img -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:80
+# sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ${RAMDISK} -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:80
 
 #FOR SSH
-# sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ramdisk.img -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:22
+# sudo ./qemu-system-x86_64 -m 4G -enable-kvm -initrd ${RAMDISK} -kernel  ${BZIMAGE_PATH} -append "root=/dev/sda1 console=ttyS0" -nographic -cpu host -net nic -hda ${HD_PATH} -net user,hostfwd=tcp::10022-:22
