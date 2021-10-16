@@ -49,9 +49,6 @@ namespace {
           }
       	} else {
       		CITargets[curr_ci].insert(line);
-          if(curr_ci == 289) {
-            errs() << line << "\n";
-          }
       	}
       }
     }
@@ -107,12 +104,12 @@ namespace {
           if(!CI) continue;
           if(CI->isInlineAsm()) continue;
           if(Function * target = dyn_cast<Function>(CI->getCalledValue()->stripPointerCasts())) continue;
+          callsite_idx = stoi(cast<MDString>(I->getMetadata("callsite.id")->getOperand(0))->getString());
           ConstantInt * Id = ConstantInt::get(Type::getInt32Ty(M->getContext()), callsite_idx);
           if(F->getName() == "do_syscall_64") {
             errs() << "Call site in do_syscall_64 : id is " << callsite_idx << " number of targets is " << CITargets[callsite_idx].size() << "\n"; 
           }
           if(IsBlackListed(F)) {
-          	callsite_idx++;
           	continue;
           }
 
@@ -140,7 +137,6 @@ namespace {
           args.push_back(Id);
           args.push_back(PII);
           CreateCall(check_ci, args, CI);
-          callsite_idx++;
         }
       }
       SetCallSiteTargets(M, callsiteTargets);

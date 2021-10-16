@@ -3,7 +3,7 @@
 #define FILE_IO 1
 
 // #define TIME_IT 1
-// #define DISABLE_LOGGING 1
+#define DISABLE_LOGGING 1
 #define DISABLE_SS_LOGGING 1
 
 // #define APPLICATION_SPECIALIZATION 1
@@ -13,13 +13,13 @@
 // #define CHANGE_SCOPE_TO_ORIGINAL 1
 
 
-// #define PROFILING 1
+#define PROFILING 1
 // #define CTX_NCS_NHD 1 // APP_TRAP track context switches, dont change scope
 // #define CTX_CS_NHD  1 // APP_EPT track context switches, change scope back to original (no hardening)
 
 // #define SC_NCS_NHD  1 // SHARD_TRAP : track system calls, dont change scope
 // #define SC_CS_NHD   1 //  SHARD_EPT : track system calls, change scope back to original (no hardening)
-#define SC_CS_HD    1 // SHARD : track system calls, change scope to system call specialized (hardening)
+// #define SC_CS_HD    1 // SHARD : track system calls, change scope to system call specialized (hardening)
 
 #ifndef PROFILING
     #define DISABLE_SC_EXIT 1
@@ -117,7 +117,7 @@ void write_to_log(struct file * fd_log, char * str, int num_bytes) {
 void profile(struct file * fd_log, char * str, int num_bytes) {
     if(fd_log) {
         file_write(fd_log, str, num_bytes);
-    }    
+    }
 }
 
 // void write_to_log_sprintf(struct file * fd_log, char * str, ...) {

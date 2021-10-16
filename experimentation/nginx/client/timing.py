@@ -5,16 +5,21 @@ import struct
 from shutil import copyfile
 import stat
 
-file = sys.argv[1]
+fname = sys.argv[1]
 num_iters = int(sys.argv[2])
 
 times = []
+
+SHARD_HOME = os.getenv('SHARD_PATH')
+
 for i in range(0, num_iters):
-	p = subprocess.Popen(["/home/muhammad/Repositories/nginx/ab_script", file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	print(fname)
+	p = subprocess.Popen([SHARD_HOME + "/experimentation/nginx/client/ab_script", fname], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	output = p.communicate()[0]
 	lines = output.decode().split('\n')
 	#print(output)
 	for line in lines:
+		print(line)
 		if len(line) > 15 and line[:15] == "Document Length":
 			bytes = line.split(' ')[-2]
 			print(bytes)

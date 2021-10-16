@@ -76,7 +76,7 @@ def func_ci_targets(lines):
 				num_calls += 1
 				toks = line.split(' ')
 				num_targets = int(toks[1])
-				if toks[0] == "callsite:-1":
+				if toks[0] == "callsite:direct":
 					curr_ci = toks[0]
 					curr_ci = "direct:" + str(direct)
 					direct += 1

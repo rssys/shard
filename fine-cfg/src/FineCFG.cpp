@@ -19,7 +19,7 @@ bool FineCFG::runOnModule(llvm::Module& module) {
 	PropagateTaintedVars(&module);
 	PrintFuncTargets(&module);
 	errs() << "number of tainted stores is " << taintedStores.size() << "\n";
-	return false;
+	return true;
 }
 
 void FineCFG::AnalyzeFuncs(Module * module) {
@@ -374,6 +374,12 @@ bool isCalled(Function * F) {
 	return false;
 }
 
+void addCallSiteId(Instruction * I, int id) {
+	LLVMContext& C = I->getContext();
+	MDNode * N = MDNode::get(C, MDString::get(C, to_string(id)));
+	I->setMetadata("callsite.id", N);
+}
+
 void FineCFG::PrintFuncTargets(Module * module) {
 	Function * F;
 	BasicBlock * BB;
@@ -396,12 +402,17 @@ void FineCFG::PrintFuncTargets(Module * module) {
 		        Value * ptr = ci->getCalledValue()->stripPointerCasts();
 		        if(Function * target = dyn_cast<Function>(ptr)) {
 		            // debug() << 1 << " -1\n"; // -1 means not indirect
-		            debug() << "callsite:-1 1\n"; // -1 means not indirect
+		            debug() << "callsite:direct 1\n"; // -1 means not indirect
+	            	if(F->getName() == "SyS_clone" && (target->getName() == "prepare_kernel_cred" || target->getName() == "commit_creds")) {
+	            		debug() << "SyS_clone\n";
+	            		continue;            
+	            	}
 		            debug() << target->getName() << "\n";
 		        } else {
 		        	if(!findInSet(handledIndCallInsts, ci)) {
 		        		// debug() << -1 << " " << num_indirect_call_sites << "\n";
-		        		debug() << "callsite:" << num_indirect_call_sites << " " << -1 << "\n";
+		        		debug() << "callsite:indirect " << -1 << "\n";
+		        		addCallSiteId(ci, num_indirect_call_sites);
 		        		num_indirect_call_sites++;
 		        		continue;
 		        	}
@@ -413,7 +424,8 @@ void FineCFG::PrintFuncTargets(Module * module) {
 		            	errs() << F->getName() << " " << call_index << "\n";
 		            }*/
 		            // debug() << targets.size() << " " << num_indirect_call_sites << "\n";
-	        		debug() << "callsite:" << num_indirect_call_sites << " " << targets.size() << "\n";
+	        		debug() << "callsite:indirect " << targets.size() << "\n";
+	        		addCallSiteId(ci, num_indirect_call_sites);
 		            num_indirect_call_sites++;
 		            for(auto func : targets)
 						debug() << func->getName() << "\n";

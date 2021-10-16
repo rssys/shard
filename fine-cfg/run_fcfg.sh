@@ -1,3 +1,3 @@
-# make clean
+make clean
 make FineCFG
-opt -load build/FineCFG.so -FineCFG ${1} -o bcs/tmp.bc 
+opt -load build/FineCFG.so -FineCFG ${1} -o ${1} 
