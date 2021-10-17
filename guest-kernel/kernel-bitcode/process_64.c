@@ -430,7 +430,6 @@ void set_tracking(struct task_struct * next_p) {
 
 void noinline set_tracking_2(int pid, char ** comm, int num) {
 	printk(KERN_INFO, "%d is pid, %s is comm %d\n", pid, comm[0], num);
-	__asm__("UD2");
 }
 
 char * parents_array[100];

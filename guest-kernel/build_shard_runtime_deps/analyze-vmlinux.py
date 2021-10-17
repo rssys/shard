@@ -35,9 +35,9 @@ def add_curr_pr_address(fname):
 def get_func_names(fname, threshold):
 	content = read_file(fname)
 	stripped = map(lambda x : x.split(), content)
-	func_names_is = map(lambda x : x[0], (filter(lambda x : (int(x[1]) <= 1000 and int(x[1]) > threshold), stripped)))
+	func_names_hardened = map(lambda x : x[0], (filter(lambda x : (int(x[1]) <= 1000 and int(x[1]) > threshold), stripped)))
 	func_names_oos = map(lambda x : x[0], (filter(lambda x : int(x[1]) <= threshold, stripped)))
-	return func_names_is, func_names_oos
+	return func_names_hardened, func_names_oos
 
 def create_copy(vmfile, suff):
 	cpy = vmfile + suff
@@ -110,7 +110,7 @@ protection_insts = get_symbol_info(vmfile)
 # 		address = struct.pack("Q", offset)
 # 		fd.write(address)
 print "number of ss insts is ", len(protection_insts)
-iis = create_copy(vmfile, "_is")
+iis = create_copy(vmfile, "_hardened")
 oos = create_copy(vmfile, "_oos")
 
 with open(vmfile, "r+b") as fd:
@@ -121,54 +121,6 @@ with open(vmfile, "r+b") as fd:
 		fd.write(chr(int("44", 16)))
 		fd.write(chr(int("00", 16)))
 		fd.write(chr(int("00", 16)))
-
-# with open(iis, "r+b") as fd:
-# 	for (func_name, address, offset, is_is, inst_sizes) in func_info:
-# 		offset = int(offset, 16)
-# 		fd.seek(offset)
-# 		code = fd.read(sum(inst_sizes))
-# 		fd.seek(offset)
-# 		code_idx = 0
-# 		if not is_is:
-# 			for isize in inst_sizes:
-# 				if isize == 1: 
-# 					fd.write(code[code_idx])
-# 					code_idx += 1
-# 					continue
-# 				for x in xrange(isize/2):
-# 					fd.write(chr(int("0F", 16)))
-# 					fd.write(chr(int("0B", 16)))
-# 					code_idx += 2
-# 				if isize % 2:
-# 					fd.write(code[code_idx])
-# 					code_idx += 1
-			# if inst_sizes[0] == 1:
-			# 	continue
-			# fd.write(chr(int("0F", 16)))
-			# fd.write(chr(int("0B", 16)))
-		# to_store.append((func_name, address, code, is_is, inst_sizes))
-
-# with open(oos, "r+b") as fd:
-# 	for (func_name, address, offset, is_is, inst_sizes) in func_info:
-# 		offset = int(offset, 16)
-# 		fd.seek(offset)
-# 		code = fd.read(sum(inst_sizes))
-# 		fd.seek(offset)
-# 		code_idx = 0
-# 		if is_is:
-# 			for isize in inst_sizes:
-# 				if isize == 1: 
-# 					fd.write(code[code_idx])
-# 					code_idx += 1
-# 					continue
-# 				for x in xrange(isize/2):
-# 					fd.write(chr(int("0F", 16)))
-# 					fd.write(chr(int("0B", 16)))
-# 					code_idx += 2
-# 				if isize % 2:
-# 					fd.write(code[code_idx])
-# 					code_idx += 1
-		# to_store.append((func_name, address, code, is_is, inst_sizes))
 
 fd = open(vmfile, 'r+b')
 
@@ -182,7 +134,7 @@ fd.close()
 
 fd = open(iis, 'r+b')
 
-with open("dt_func_code_is_backup", 'w') as fd2:
+with open("dt_func_code_hardened_backup", 'w') as fd2:
 	# fd.seek(0x200000)
 	fd.seek(file_offset)
 	for i in xrange(text_size):
@@ -202,19 +154,3 @@ with open("dt_func_code_oos_backup", 'w') as fd2:
 		# print hex(ord(byte))
 
 fd.close()
-
-# with open("/home/muhammad/testing/debloating/dt_func_info_is", 'w') as fd:
-# 	for (func_name, address, code, is_is, inst_sizes) in to_store:
-# 		address = struct.pack("Q", int(address, 16))
-# 		code_size = struct.pack("I", len(code))
-# 		strlen = struct.pack("I", len(func_name))
-# 		inst_size0 = struct.pack("I", inst_sizes[0])
-# 		inst_size1 = struct.pack("I", inst_sizes[1])
-# 		new_code = ""
-# 		fd.write(strlen)
-# 		fd.write(func_name)
-# 		fd.write(address)
-# 		fd.write(code_size)
-# 		fd.write(inst_size0)
-# 		fd.write(inst_size1)		
-# 		fd.write(code)

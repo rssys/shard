@@ -311,9 +311,9 @@ void mmap_texts(char * ram, uint64_t size) {
     char path[250];
 
     int fd1 = open(append_to_path(path, "dt_func_code_original"), O_RDWR, 0);
-    int fd2 = open(append_to_path(path, "dt_func_code_is"), O_RDWR, 0);
+    int fd2 = open(append_to_path(path, "dt_func_code_hardened"), O_RDWR, 0);
     int fd3 = open(append_to_path(path, "dt_func_code_oos"), O_RDWR, 0);
-    int fd4 = open(append_to_path(path, "dt_func_code_ud2"), O_RDWR, 0);
+    int fd4 = open(append_to_path(path, "dt_func_code_unreachable"), O_RDWR, 0);
 
 
     ram_is = mmap(NULL, text_section_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd2, 0);

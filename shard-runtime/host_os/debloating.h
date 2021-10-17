@@ -439,28 +439,36 @@ void dt_load_hva_addrs(void) {
     }
     /* read 4 integers */
     if(!dt_do_safe_read(fd, (char *) &temp, 4)) {
+        dt_printk("failed to open on first try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &temp, 4)) {
+        dt_printk("failed to open on second try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &temp, 4)) {
+        dt_printk("failed to open on third try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &temp, 4)) {
+        dt_printk("failed to open on fourth try");
         return;
     }
     
     if(!dt_do_safe_read(fd, (char *) &ss_text_addr, 8)) {
+        dt_printk("failed to open on fifth try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &oos_text_addr, 8)) {
+        dt_printk("failed to open on sixth try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &original_text_addr, 8)) {
+        dt_printk("failed to open on seventh try");
         return;
     }
     if(!dt_do_safe_read(fd, (char *) &ud2_text_addr, 8)) {
+        dt_printk("failed to open on eighth try");
         return;
     }
 }

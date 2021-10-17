@@ -193,26 +193,27 @@ void SigMatch::PrintFuncTargets(Module * module) {
 		            continue;
 		        Value * ptr = ci->getCalledValue()->stripPointerCasts();
 		        if(Function * target = dyn_cast<Function>(ptr)) {
-		            errs() << "callsite:direct 1\n";
-	            	if(F->getName() == "SyS_clone" && (target->getName() == "prepare_kernel_cred" || target->getName() == "commit_creds")) {
-	            		errs() << "SyS_clone\n";
+		            errs() << "    callsite:direct 1{\n";
+	            	if(F->getName() == "cgroup_can_fork" && (target->getName() == "prepare_kernel_cred" || target->getName() == "commit_creds")) {
+	            		errs() << "        kmem_cache_alloc\n    }\n";
 	            		continue;            
 	            	}
-		            errs() << target->getName() << "\n";
+		            errs() << "        " << target->getName() << "\n    }\n";
 		        } else {
 			        if(F->getName() == "___bpf_prog_run") {
-		        		errs() << "callsite:" << "indirect" << " " << -1 << "\n";
+		        		errs() << "    callsite:indirect:" + to_string(num_indirect_call_sites) << " " << -1 << "{\n    }\n";
 		        		checkCallSiteId(ci, num_indirect_call_sites);
 			            num_indirect_call_sites++;
 			            continue;
 				    }
 		        	Signature sign = getSignature(ptr->getType());
 		            FuncSet targets = typesTofuncs[sign];
-	        		errs() << "callsite:" << "indirect" << " " << targets.size() << "\n";
+	        		errs() << "    callsite:indirect:" + to_string(num_indirect_call_sites) << " "  << targets.size() << "{\n";
 	        		checkCallSiteId(ci, num_indirect_call_sites);
 		            num_indirect_call_sites++;
-					for(auto func : targets)
-						errs() << func->getName() << "\n";
+		            for(auto func : targets)
+						errs() << "        " << func->getName() << "\n";
+					errs() << "    }\n";
 		        }
 		    }
 		}

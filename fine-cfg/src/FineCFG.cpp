@@ -402,16 +402,16 @@ void FineCFG::PrintFuncTargets(Module * module) {
 		        Value * ptr = ci->getCalledValue()->stripPointerCasts();
 		        if(Function * target = dyn_cast<Function>(ptr)) {
 		            // debug() << 1 << " -1\n"; // -1 means not indirect
-		            debug() << "callsite:direct 1\n"; // -1 means not indirect
-	            	if(F->getName() == "SyS_clone" && (target->getName() == "prepare_kernel_cred" || target->getName() == "commit_creds")) {
-	            		debug() << "SyS_clone\n";
+		            debug() << "    callsite:direct 1{\n";
+	            	if(F->getName() == "cgroup_can_fork" && (target->getName() == "prepare_kernel_cred" || target->getName() == "commit_creds")) {
+	            		debug() << "        kmem_cache_alloc\n    }\n";
 	            		continue;            
 	            	}
-		            debug() << target->getName() << "\n";
+		            debug() << "        " << target->getName() << "\n    }\n";
 		        } else {
 		        	if(!findInSet(handledIndCallInsts, ci)) {
 		        		// debug() << -1 << " " << num_indirect_call_sites << "\n";
-		        		debug() << "callsite:indirect " << -1 << "\n";
+		        		debug() << "    callsite:indirect:" + to_string(num_indirect_call_sites) << " "  << -1 << "{\n    }\n";
 		        		addCallSiteId(ci, num_indirect_call_sites);
 		        		num_indirect_call_sites++;
 		        		continue;
@@ -424,11 +424,12 @@ void FineCFG::PrintFuncTargets(Module * module) {
 		            	errs() << F->getName() << " " << call_index << "\n";
 		            }*/
 		            // debug() << targets.size() << " " << num_indirect_call_sites << "\n";
-	        		debug() << "callsite:indirect " << targets.size() << "\n";
+	        		debug() << "    callsite:indirect:" + to_string(num_indirect_call_sites) << " " << targets.size() << "{\n";
 	        		addCallSiteId(ci, num_indirect_call_sites);
 		            num_indirect_call_sites++;
 		            for(auto func : targets)
-						debug() << func->getName() << "\n";
+						debug() << "        " << func->getName() << "\n";
+					debug() << "    }\n";
 		        }
 		    }
 		}

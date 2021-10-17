@@ -166,9 +166,9 @@ print len(irq_exc_funcs)
 funcs = get_bc_funcs(bcfile)
 func_info, init_section_list = get_symbol_info(vmfile, funcs)
 # write_init_section_list(init_section_list)
-ud2_file = create_copy(vmfile, "_ud2")
+ud2_file = create_copy(vmfile, "_unreachable")
 to_store = overwrite_file(ud2_file, func_info, irq_exc_funcs)
-write_ts_file(ud2_file, "dt_func_code_ud2_backup")
+write_ts_file(ud2_file, "dt_func_code_unreachable_backup")
 
 with open("dt_func_info_is", 'w') as fd:
 	prev_addr = -1

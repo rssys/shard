@@ -62,9 +62,8 @@ def func_ci_targets(lines):
 	ind_targets = []
 	num_unhandled = 0
 	direct = 0
-	indirect = 0
 	for line in lines:
-		if len(line) > 1 and line[-1] == "{":
+		if len(line) > 1 and line[-1] == "{" and line.find("callsite") < 0:
 			num_funcs += 1
 			currfunc = line[:-1]
 			num_targets = 0
@@ -75,16 +74,15 @@ def func_ci_targets(lines):
 			if not num_targets:
 				num_calls += 1
 				toks = line.split(' ')
-				num_targets = int(toks[1])
+				num_targets = int(toks[1][:-1])
 				if toks[0] == "callsite:direct":
-					curr_ci = toks[0]
 					curr_ci = "direct:" + str(direct)
 					direct += 1
 				else:
 					if toks[0].split(':')[0] != "callsite":
 						print "ERROR", line, toks[0].split(':')[0]
-					curr_ci = "indirect:" + str(indirect)
-					indirect += 1
+					idx = int(toks[0].split(':')[2])
+					curr_ci = "indirect:" + str(idx)
 				currset = set()
 				if num_targets == -1:
 					nodes[currfunc].append("unhandled")

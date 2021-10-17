@@ -1,7 +1,7 @@
-cp ${SHARD_WORK_DIR}/dt_func_code_is_backup ${SHARD_WORK_DIR}/dt_func_code_original
-cp ${SHARD_WORK_DIR}/dt_func_code_is_backup ${SHARD_WORK_DIR}/dt_func_code_is
+cp ${SHARD_WORK_DIR}/dt_func_code_original_backup ${SHARD_WORK_DIR}/dt_func_code_original
+cp ${SHARD_WORK_DIR}/dt_func_code_hardened_backup ${SHARD_WORK_DIR}/dt_func_code_hardened
 cp ${SHARD_WORK_DIR}/dt_func_code_oos_backup ${SHARD_WORK_DIR}/dt_func_code_oos
-cp ${SHARD_WORK_DIR}/dt_func_code_ud2_backup ${SHARD_WORK_DIR}/dt_func_code_ud2
+cp ${SHARD_WORK_DIR}/dt_func_code_unreachable_backup ${SHARD_WORK_DIR}/dt_func_code_unreachable
 
 BZIMAGE_PATH=${SHARD_WORK_DIR}/bzImage
 HD_PATH=${SHARD_WORK_DIR}/${1}
